@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rose Mutua & Advocates — Machakos Law Firm</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --black: #09090a;
+      --dark: #0f0f0d;
+      --mid: #181816;
+      --card: #1d1d1b;
+      --gold: #c9a84c;
+      --gold-light: #e2c47a;
+      --gold-dim: rgba(201,168,76,0.12);
+      --white: #f4f1eb;
+      --muted: #878574;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Outfit', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--white); font-family: var(--sans); font-weight: 300; overflow-x: hidden; cursor: none; }
+
+    .cursor { position: fixed; width: 10px; height: 10px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: transform .1s; }
+    .cursor-ring { position: fixed; width: 36px; height: 36px; border: 1px solid var(--gold); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: all .25s; opacity: .6; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 24px 60px;
+      background: linear-gradient(to bottom, rgba(9,9,10,0.97) 60%, transparent);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(201,168,76,0.08);
+      transition: border-color .3s;
+    }
+    .nav-logo { font-family: var(--serif); font-size: 1.05rem; font-weight: 600; letter-spacing: .06em; color: var(--gold); text-decoration: none; }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a { color: var(--white); text-decoration: none; font-size: .75rem; letter-spacing: .16em; text-transform: uppercase; font-weight: 400; transition: color .3s; position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width .3s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 9px 26px; font-family: var(--sans); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; cursor: none; transition: all .3s; }
+    .nav-cta:hover { background: var(--gold); color: var(--black); }
+
+    /* HERO */
+    .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 140px 60px 100px; position: relative; overflow: hidden; }
+    .hero-ring { position: absolute; border-radius: 50%; pointer-events: none; }
+    .hero-ring1 { top: -20%; right: -8%; width: 680px; height: 680px; border: 1px solid rgba(201,168,76,.07); animation: spin 50s linear infinite; }
+    .hero-ring2 { top: 8%; right: 4%; width: 400px; height: 400px; border: 1px solid rgba(201,168,76,.05); animation: spin 32s linear infinite reverse; }
+    .hero-ring3 { bottom: -10%; left: -5%; width: 520px; height: 520px; border: 1px solid rgba(201,168,76,.04); animation: spin 44s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .hero-eyebrow { font-size: .7rem; letter-spacing: .38em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 28px; display: flex; align-items: center; gap: 14px; opacity: 0; animation: fadeUp .8s .2s forwards; }
+    .hero-eyebrow::before { content: ''; width: 36px; height: 1px; background: var(--gold); }
+    .hero-title { font-family: var(--serif); font-size: clamp(3.8rem,8.5vw,9rem); font-weight: 300; line-height: .9; letter-spacing: -.01em; max-width: 920px; opacity: 0; animation: fadeUp .9s .4s forwards; }
+    .hero-title em { font-style: italic; color: var(--gold-light); }
+    .hero-title .indent { display: block; padding-left: clamp(50px,10vw,160px); }
+    .hero-divider { width: 1px; height: 72px; background: var(--gold); margin: 44px 0; opacity: 0; animation: fadeUp .8s .6s forwards; }
+    .hero-sub { font-size: .98rem; color: var(--muted); line-height: 1.85; max-width: 420px; opacity: 0; animation: fadeUp .8s .75s forwards; }
+    .hero-actions { display: flex; gap: 18px; margin-top: 44px; flex-wrap: wrap; opacity: 0; animation: fadeUp .8s .9s forwards; }
+    .btn-primary { background: var(--gold); color: var(--black); padding: 15px 42px; font-family: var(--sans); font-size: .76rem; letter-spacing: .2em; text-transform: uppercase; font-weight: 600; border: none; cursor: none; transition: all .3s; text-decoration: none; display: inline-block; }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-ghost { background: transparent; color: var(--white); padding: 15px 42px; font-family: var(--sans); font-size: .76rem; letter-spacing: .2em; text-transform: uppercase; font-weight: 400; border: 1px solid rgba(244,241,235,.22); cursor: none; transition: all .3s; text-decoration: none; display: inline-block; }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+    .hero-location { position: absolute; bottom: 48px; left: 60px; display: flex; align-items: center; gap: 10px; opacity: 0; animation: fadeUp .8s 1.1s forwards; }
+    .hero-location span { font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+    .hero-scroll { position: absolute; bottom: 48px; right: 60px; display: flex; flex-direction: column; align-items: center; gap: 10px; opacity: 0; animation: fadeUp .8s 1.1s forwards; }
+    .hero-scroll span { font-size: .63rem; letter-spacing: .25em; text-transform: uppercase; color: var(--muted); writing-mode: vertical-rl; }
+    .scroll-line { width: 1px; height: 56px; background: linear-gradient(to bottom, var(--gold), transparent); animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:.4} 50%{opacity:1} }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+
+    /* STATS */
+    .stats-band { background: var(--mid); border-top: 1px solid rgba(201,168,76,.18); border-bottom: 1px solid rgba(201,168,76,.18); padding: 48px 60px; display: grid; grid-template-columns: repeat(5,1fr); }
+    .stat-item { text-align: center; padding: 0 16px; border-right: 1px solid rgba(244,241,235,.07); }
+    .stat-item:last-child { border-right: none; }
+    .stat-number { font-family: var(--serif); font-size: 3rem; font-weight: 300; color: var(--gold); line-height: 1; display: block; }
+    .stat-label { font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); margin-top: 8px; display: block; }
+
+    section { padding: 120px 60px; }
+    .section-label { font-size: .68rem; letter-spacing: .35em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 18px; display: flex; align-items: center; gap: 14px; }
+    .section-label::before { content: ''; width: 28px; height: 1px; background: var(--gold); }
+    .section-title { font-family: var(--serif); font-size: clamp(2.2rem,4vw,3.8rem); font-weight: 300; line-height: 1.08; }
+    .section-title em { font-style: italic; color: var(--gold-light); }
+    .gold-line { width: 52px; height: 2px; background: var(--gold); margin: 28px 0; }
+
+    /* ABOUT */
+    .about { background: var(--dark); }
+    .about-grid { display: grid; grid-template-columns: 5fr 7fr; gap: 90px; align-items: center; margin-top: 60px; }
+    .about-frame { aspect-ratio: 3/4; max-height: 560px; background: var(--mid); position: relative; overflow: hidden; }
+    .about-frame::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--gold-dim) 0%, transparent 55%), repeating-linear-gradient(45deg, transparent, transparent 28px, rgba(201,168,76,.03) 28px, rgba(201,168,76,.03) 29px); }
+    .about-initials { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; }
+    .about-initials .big { font-family: var(--serif); font-size: 7rem; font-weight: 300; color: rgba(201,168,76,.35); line-height: 1; }
+    .about-initials small { font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
+    .box-a { position: absolute; bottom: -20px; right: -20px; width: 140px; height: 140px; border: 1px solid var(--gold); opacity: .2; }
+    .box-b { position: absolute; top: -14px; left: -14px; width: 70px; height: 70px; border: 1px solid var(--gold); opacity: .12; }
+    .about-body p { color: var(--muted); line-height: 1.9; margin-bottom: 18px; font-size: .92rem; }
+    .about-body p strong { color: var(--white); font-weight: 500; }
+    .pull-quote { border-left: 2px solid var(--gold); padding-left: 22px; margin: 32px 0; font-family: var(--serif); font-size: 1.35rem; font-style: italic; color: var(--white); line-height: 1.55; }
+    .credentials { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+    .cred-badge { border: 1px solid rgba(201,168,76,.25); padding: 7px 16px; font-size: .68rem; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); font-weight: 500; }
+
+    /* PRACTICE */
+    .practice { background: var(--black); }
+    .practice-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 2px; margin-top: 56px; }
+    .practice-card { background: var(--card); padding: 48px 44px; position: relative; overflow: hidden; transition: background .4s; border: 1px solid transparent; }
+    .practice-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform .4s; }
+    .practice-card:hover { background: #222220; border-color: rgba(201,168,76,.12); }
+    .practice-card:hover::before { transform: scaleX(1); }
+    .p-num { font-family: var(--serif); font-size: 3.8rem; font-weight: 300; color: rgba(201,168,76,.1); line-height: 1; margin-bottom: 20px; transition: color .4s; }
+    .practice-card:hover .p-num { color: rgba(201,168,76,.22); }
+    .p-name { font-family: var(--serif); font-size: 1.55rem; margin-bottom: 14px; }
+    .p-desc { color: var(--muted); font-size: .86rem; line-height: 1.85; margin-bottom: 22px; }
+    .p-services { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
+    .p-tag { font-size: .63rem; letter-spacing: .14em; text-transform: uppercase; border: 1px solid rgba(201,168,76,.2); color: var(--muted); padding: 4px 12px; }
+    .p-link { font-size: .68rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); text-decoration: none; display: flex; align-items: center; gap: 10px; transition: gap .3s; }
+    .p-link::after { content: '→'; }
+    .practice-card:hover .p-link { gap: 18px; }
+
+    /* PROCESS */
+    .process { background: var(--dark); }
+    .process-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; margin-top: 60px; position: relative; }
+    .process-steps::before { content: ''; position: absolute; top: 32px; left: 10%; right: 10%; height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); opacity: .3; pointer-events: none; }
+    .step { padding: 0 32px 0 0; }
+    .step-num { width: 64px; height: 64px; border: 1px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 1.4rem; color: var(--gold); margin-bottom: 28px; position: relative; z-index: 1; background: var(--dark); }
+    .step-title { font-family: var(--serif); font-size: 1.2rem; margin-bottom: 12px; }
+    .step-desc { color: var(--muted); font-size: .83rem; line-height: 1.8; }
+
+    /* TEAM */
+    .team { background: var(--black); }
+    .team-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-top: 56px; }
+    .team-card { background: var(--card); overflow: hidden; transition: background .4s; }
+    .team-card:hover { background: #222220; }
+    .team-photo { aspect-ratio: 3/4; max-height: 360px; background: var(--mid); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .team-photo::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, var(--card)); }
+    .team-photo-initials { font-family: var(--serif); font-size: 4rem; font-weight: 300; color: rgba(201,168,76,.3); }
+    .team-info { padding: 28px 32px 36px; }
+    .team-name { font-family: var(--serif); font-size: 1.35rem; margin-bottom: 6px; }
+    .team-role { font-size: .68rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+    .team-bio { color: var(--muted); font-size: .83rem; line-height: 1.8; }
+    .team-specialties { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 16px; }
+    .spec-tag { font-size: .6rem; letter-spacing: .12em; text-transform: uppercase; border: 1px solid rgba(201,168,76,.18); color: var(--muted); padding: 3px 10px; }
+
+    /* RESULTS */
+    .results { background: var(--mid); position: relative; overflow: hidden; }
+    .results::before { content: 'VICTORY'; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-family: var(--serif); font-size: 18vw; font-weight: 700; color: rgba(201,168,76,.025); white-space: nowrap; pointer-events: none; }
+    .results-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 56px; }
+    .result-card { background: var(--card); padding: 36px 32px; border: 1px solid rgba(201,168,76,.08); position: relative; }
+    .result-card::before { content: ''; position: absolute; top: 0; left: 32px; right: 32px; height: 1px; background: var(--gold); opacity: .4; }
+    .result-outcome { font-family: var(--serif); font-size: 1.8rem; color: var(--gold); margin-bottom: 8px; }
+    .result-type { font-size: .66rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+    .result-desc { color: var(--white); font-size: .88rem; line-height: 1.75; }
+
+    /* WHY */
+    .why { background: var(--dark); }
+    .why-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 44px; margin-top: 60px; }
+    .why-item { position: relative; padding-top: 28px; }
+    .why-item::before { content: ''; position: absolute; top: 0; left: 0; width: 36px; height: 1px; background: var(--gold); }
+    .why-icon { font-size: 1.7rem; margin-bottom: 14px; }
+    .why-title { font-family: var(--serif); font-size: 1.15rem; margin-bottom: 10px; }
+    .why-text { color: var(--muted); font-size: .85rem; line-height: 1.85; }
+
+    /* AWARDS */
+    .awards { background: var(--black); }
+    .awards-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; margin-top: 56px; }
+    .award-card { background: var(--card); padding: 36px 28px; text-align: center; border: 1px solid rgba(201,168,76,.07); transition: all .4s; }
+    .award-card:hover { background: #222220; border-color: rgba(201,168,76,.2); }
+    .award-icon { font-size: 2.2rem; margin-bottom: 14px; display: block; }
+    .award-title { font-family: var(--serif); font-size: 1.05rem; margin-bottom: 8px; }
+    .award-org { font-size: .67rem; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+    .award-year { font-size: .75rem; color: var(--muted); }
+
+    /* COMMUNITY */
+    .community { background: var(--mid); }
+    .community-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-top: 60px; }
+    .community-text p { color: var(--muted); line-height: 1.9; font-size: .92rem; margin-bottom: 18px; }
+    .community-pillars { display: flex; flex-direction: column; gap: 14px; margin-top: 32px; }
+    .pillar { display: flex; align-items: flex-start; gap: 20px; padding: 20px 24px; background: var(--card); border-left: 2px solid var(--gold); }
+    .pillar-icon { font-size: 1.3rem; flex-shrink: 0; }
+    .pillar-title { font-family: var(--serif); font-size: 1rem; margin-bottom: 4px; }
+    .pillar-desc { color: var(--muted); font-size: .8rem; line-height: 1.7; }
+    .community-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .comm-stat { background: var(--card); padding: 36px 28px; text-align: center; border-top: 2px solid var(--gold); }
+    .comm-stat-num { font-family: var(--serif); font-size: 2.8rem; font-weight: 300; color: var(--gold); display: block; }
+    .comm-stat-label { font-size: .68rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin-top: 8px; display: block; }
+
+    /* TESTIMONIALS */
+    .testimonials { background: var(--black); }
+    .testimonial-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 56px; }
+    .t-card { background: var(--card); padding: 36px; border: 1px solid rgba(201,168,76,.07); position: relative; }
+    .t-card::before { content: '\201C'; position: absolute; top: 20px; right: 28px; font-family: var(--serif); font-size: 5rem; color: rgba(201,168,76,.12); line-height: 1; }
+    .stars { color: var(--gold); font-size: .75rem; margin-bottom: 14px; letter-spacing: 2px; }
+    .t-text { font-family: var(--serif); font-size: .98rem; font-style: italic; line-height: 1.75; color: var(--white); margin-bottom: 24px; }
+    .t-author .name { font-size: .8rem; font-weight: 500; color: var(--gold); letter-spacing: .05em; }
+    .t-author .case { font-size: .68rem; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; margin-top: 4px; }
+
+    /* FAQ */
+    .faq { background: var(--dark); }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 56px; }
+    .faq-item { background: var(--card); border: 1px solid rgba(201,168,76,.08); overflow: hidden; transition: border-color .3s; }
+    .faq-q { padding: 24px 28px; font-family: var(--serif); font-size: 1.05rem; cursor: none; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+    .faq-q span { color: var(--gold); font-size: 1.2rem; transition: transform .3s; flex-shrink: 0; margin-left: 12px; }
+    .faq-a { padding: 0 28px; max-height: 0; overflow: hidden; transition: all .4s ease; color: var(--muted); font-size: .86rem; line-height: 1.85; }
+    .faq-item.open .faq-a { padding: 0 28px 24px; max-height: 300px; }
+    .faq-item.open .faq-q span { transform: rotate(45deg); }
+    .faq-item.open { border-color: rgba(201,168,76,.22); }
+
+    /* CONTACT */
+    .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; }
+    .contact-info { padding: 100px 72px; background: var(--black); }
+    .contact-form-side { padding: 100px 72px; background: var(--card); }
+    .contact-detail { margin-bottom: 32px; }
+    .c-label { font-size: .66rem; letter-spacing: .25em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 6px; display: block; }
+    .c-val { font-family: var(--serif); font-size: 1.08rem; color: var(--white); }
+    .social-row { display: flex; gap: 12px; margin-top: 40px; }
+    .social-btn { width: 40px; height: 40px; border: 1px solid rgba(201,168,76,.25); display: flex; align-items: center; justify-content: center; font-size: .85rem; color: var(--gold); text-decoration: none; transition: all .3s; }
+    .social-btn:hover { background: var(--gold); color: var(--black); }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: .66rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin-bottom: 9px; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; background: var(--mid); border: 1px solid rgba(244,241,235,.09); color: var(--white); padding: 13px 16px; font-family: var(--sans); font-size: .88rem; font-weight: 300; outline: none; transition: border-color .3s; appearance: none; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); }
+    .form-group select option { background: var(--mid); }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-submit { width: 100%; background: var(--gold); color: var(--black); padding: 15px; font-family: var(--sans); font-size: .76rem; letter-spacing: .2em; text-transform: uppercase; font-weight: 700; border: none; cursor: none; transition: all .3s; }
+    .form-submit:hover { background: var(--gold-light); }
+
+    /* MAP */
+    .map-band { height: 300px; background: var(--mid); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; border-top: 1px solid rgba(201,168,76,.1); }
+    .map-band::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(201,168,76,.06) 0%, transparent 70%); }
+    .map-inner { text-align: center; position: relative; z-index: 1; }
+    .map-inner .pin { font-size: 2.8rem; display: block; margin-bottom: 10px; }
+    .map-inner h4 { font-family: var(--serif); font-size: 1.5rem; margin-bottom: 6px; }
+    .map-inner p { color: var(--muted); font-size: .82rem; }
+    .map-inner a { display: inline-block; margin-top: 14px; font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(201,168,76,.3); padding-bottom: 3px; }
+
+    /* FOOTER */
+    footer { background: var(--black); border-top: 1px solid rgba(201,168,76,.12); padding: 0 60px; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; padding: 72px 0 56px; border-bottom: 1px solid rgba(244,241,235,.06); }
+    .footer-brand .logo { font-family: var(--serif); font-size: 1.1rem; color: var(--gold); letter-spacing: .07em; display: block; margin-bottom: 16px; }
+    .footer-brand p { color: var(--muted); font-size: .82rem; line-height: 1.8; max-width: 260px; }
+    .footer-col h5 { font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; font-weight: 500; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a { color: var(--muted); text-decoration: none; font-size: .82rem; transition: color .3s; }
+    .footer-col ul li a:hover { color: var(--gold); }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding: 24px 0; }
+    .footer-copy { font-size: .7rem; color: var(--muted); letter-spacing: .08em; }
+    .footer-legal { display: flex; gap: 24px; }
+    .footer-legal a { font-size: .7rem; color: var(--muted); text-decoration: none; letter-spacing: .1em; transition: color .3s; }
+    .footer-legal a:hover { color: var(--gold); }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(36px); transition: opacity .8s ease, transform .8s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .d1{transition-delay:.1s} .d2{transition-delay:.2s} .d3{transition-delay:.3s} .d4{transition-delay:.4s}
+
+    @media(max-width:1100px){
+      .stats-band{grid-template-columns:repeat(3,1fr)}
+      .awards-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:900px){
+      nav{padding:18px 22px}
+      .nav-links{display:none}
+      .hero,section{padding:80px 22px}
+      .stats-band{grid-template-columns:repeat(2,1fr);padding:36px 22px}
+      .about-grid,.practice-grid,.process-steps,.team-grid,.results-grid,.why-grid,.awards-grid,.community-grid,.testimonial-grid,.faq-grid{grid-template-columns:1fr}
+      .contact-wrap{grid-template-columns:1fr}
+      .contact-info,.contact-form-side{padding:56px 22px}
+      footer{padding:0 22px}
+      .footer-top{grid-template-columns:1fr 1fr;gap:32px}
+      .footer-bottom{flex-direction:column;gap:12px;text-align:center}
+      .form-row{grid-template-columns:1fr}
+      .hero-scroll,.hero-location{display:none}
+      .community-stats{grid-template-columns:1fr 1fr}
+    }
+  </style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">Rose Mutua & Advocates</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#practice">Practice Areas</a></li>
+    <li><a href="#team">Our Team</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#community">Community</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Free Consultation</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-ring hero-ring1"></div>
+  <div class="hero-ring hero-ring2"></div>
+  <div class="hero-ring hero-ring3"></div>
+  <div class="hero-eyebrow">Established Advocates — Machakos, Kenya</div>
+  <h1 class="hero-title">
+    Justice, <em>delivered</em>
+    <span class="indent">with <em>precision.</em></span>
+  </h1>
+  <div class="hero-divider"></div>
+  <p class="hero-sub">Rose Mutua & Advocates is Machakos County's premier law firm — providing bold, strategic legal counsel across corporate, criminal, family, and estate matters.</p>
+  <div class="hero-actions">
+    <a href="#contact" class="btn-primary">Book a Consultation</a>
+    <a href="#practice" class="btn-ghost">Explore Practice Areas</a>
+  </div>
+  <div class="hero-location"><span>📍 Machakos Town, Machakos County</span></div>
+  <div class="hero-scroll"><div class="scroll-line"></div><span>Scroll</span></div>
+</section>
+
+<!-- STATS -->
+<div class="stats-band">
+  <div class="stat-item"><span class="stat-number">20+</span><span class="stat-label">Years of Practice</span></div>
+  <div class="stat-item"><span class="stat-number">600+</span><span class="stat-label">Cases Handled</span></div>
+  <div class="stat-item"><span class="stat-number">98%</span><span class="stat-label">Client Satisfaction</span></div>
+  <div class="stat-item"><span class="stat-number">4</span><span class="stat-label">Practice Areas</span></div>
+  <div class="stat-item"><span class="stat-number">12+</span><span class="stat-label">Legal Professionals</span></div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-label">About the Firm</div>
+  <h2 class="section-title">Rooted in <em>integrity.</em><br>Driven by results.</h2>
+  <div class="about-grid">
+    <div style="position:relative;" class="reveal">
+      <div class="about-frame">
+        <div class="about-initials">
+          <span class="big">RM</span>
+          <small>Rose Mutua, LL.B, CPS</small>
+        </div>
+      </div>
+      <div class="box-a"></div>
+      <div class="box-b"></div>
+    </div>
+    <div class="about-body reveal d2">
+      <div class="section-label">Founding Partner</div>
+      <h3 class="section-title" style="font-size:2rem;">Rose Mutua<br><em>Lead Advocate</em></h3>
+      <div class="gold-line"></div>
+      <p>Founded in the heart of Machakos County, Rose Mutua & Advocates has grown into one of the most respected legal practices in the region. <strong>Our founding partner, Rose Mutua</strong>, brings over two decades of litigation and advisory experience to every matter she touches.</p>
+      <p>We serve individuals, families, entrepreneurs, and corporations with equal dedication — delivering the personalised attention that large firms simply cannot offer, backed by expertise that rivals any practice in the country.</p>
+      <div class="pull-quote">"Every client's matter is a cause worth fighting for — with strategy, heart, and unwavering resolve."</div>
+      <p>From landmark High Court victories to complex corporate structures, our track record speaks before we do. We are proud to call Machakos County home, and we are committed to raising the standard of legal service across the region.</p>
+      <div class="credentials">
+        <span class="cred-badge">LL.B — University of Nairobi</span>
+        <span class="cred-badge">CPS (Kenya)</span>
+        <span class="cred-badge">LSK Member</span>
+        <span class="cred-badge">20+ Years Experience</span>
+        <span class="cred-badge">High Court Advocate</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRACTICE AREAS -->
+<section class="practice" id="practice">
+  <div class="section-label">What We Do</div>
+  <h2 class="section-title">Our Practice <em>Areas</em></h2>
+  <p style="color:var(--muted);max-width:520px;margin-top:16px;font-size:.92rem;line-height:1.85;">We provide comprehensive legal services across four core disciplines, each handled with specialised expertise and dedicated advocacy.</p>
+  <div class="practice-grid">
+    <div class="practice-card reveal">
+      <div class="p-num">01</div>
+      <h3 class="p-name">Corporate & Business Law</h3>
+      <p class="p-desc">From company incorporation and mergers to commercial contracts and regulatory compliance — we protect your business interests at every stage of growth, ensuring you operate on solid legal footing in Machakos and beyond.</p>
+      <div class="p-services">
+        <span class="p-tag">Company Formation</span><span class="p-tag">Mergers & Acquisitions</span>
+        <span class="p-tag">Commercial Contracts</span><span class="p-tag">Shareholder Disputes</span>
+        <span class="p-tag">Regulatory Compliance</span>
+      </div>
+      <a href="#contact" class="p-link">Enquire Now</a>
+    </div>
+    <div class="practice-card reveal d1">
+      <div class="p-num">02</div>
+      <h3 class="p-name">Criminal Defense</h3>
+      <p class="p-desc">Aggressive, principled defense in criminal proceedings. We safeguard your rights from the moment of investigation through trial and appeal — ensuring every client receives the fullest protection of the law without compromise.</p>
+      <div class="p-services">
+        <span class="p-tag">Pre-trial Defense</span><span class="p-tag">Bail Applications</span>
+        <span class="p-tag">Trial Representation</span><span class="p-tag">Appeals</span>
+        <span class="p-tag">White-Collar Crime</span>
+      </div>
+      <a href="#contact" class="p-link">Enquire Now</a>
+    </div>
+    <div class="practice-card reveal d2">
+      <div class="p-num">03</div>
+      <h3 class="p-name">Family & Matrimonial Law</h3>
+      <p class="p-desc">Sensitive, discreet counsel on divorce, child custody, adoption, and spousal rights. We navigate family matters with firmness and compassion, placing your family's wellbeing at the centre of every decision.</p>
+      <div class="p-services">
+        <span class="p-tag">Divorce & Separation</span><span class="p-tag">Child Custody</span>
+        <span class="p-tag">Adoption</span><span class="p-tag">Matrimonial Property</span>
+        <span class="p-tag">Spousal Maintenance</span>
+      </div>
+      <a href="#contact" class="p-link">Enquire Now</a>
+    </div>
+    <div class="practice-card reveal d3">
+      <div class="p-num">04</div>
+      <h3 class="p-name">Estate & Succession</h3>
+      <p class="p-desc">Comprehensive estate planning, wills, probate, and inheritance dispute resolution. We ensure your legacy is protected and your wishes honoured — long after the decisions of today are made.</p>
+      <div class="p-services">
+        <span class="p-tag">Will Drafting</span><span class="p-tag">Probate Administration</span>
+        <span class="p-tag">Trust Formation</span><span class="p-tag">Succession Disputes</span>
+        <span class="p-tag">Estate Planning</span>
+      </div>
+      <a href="#contact" class="p-link">Enquire Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW WE WORK -->
+<section class="process" id="process">
+  <div class="section-label">Our Process</div>
+  <h2 class="section-title">How we <em>work</em></h2>
+  <p style="color:var(--muted);max-width:480px;margin-top:14px;font-size:.9rem;line-height:1.8;">A clear, transparent process from your very first call to the final resolution of your matter — no surprises, no jargon.</p>
+  <div class="process-steps">
+    <div class="step reveal">
+      <div class="step-num">1</div>
+      <h4 class="step-title">Free Initial Consultation</h4>
+      <p class="step-desc">We begin with a no-obligation consultation to understand your situation, assess the merits of your matter, and explain your legal options in plain language.</p>
+    </div>
+    <div class="step reveal d1">
+      <div class="step-num">2</div>
+      <h4 class="step-title">Strategy & Engagement</h4>
+      <p class="step-desc">We design a bespoke legal strategy tailored to your goals. You'll receive a clear scope of work, fee structure, and realistic timeline before we proceed.</p>
+    </div>
+    <div class="step reveal d2">
+      <div class="step-num">3</div>
+      <h4 class="step-title">Active Representation</h4>
+      <p class="step-desc">Our advocates work with precision and tenacity — in court, in negotiations, or in advisory — keeping you informed at every material development.</p>
+    </div>
+    <div class="step reveal d3">
+      <div class="step-num">4</div>
+      <h4 class="step-title">Resolution & Beyond</h4>
+      <p class="step-desc">We see every matter through to its conclusion and remain available for follow-up counsel, ensuring the outcome serves your long-term interests.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team" id="team">
+  <div class="section-label">Our People</div>
+  <h2 class="section-title">Meet the <em>team</em></h2>
+  <p style="color:var(--muted);max-width:500px;margin-top:14px;font-size:.9rem;line-height:1.8;">A multidisciplinary team of advocates, legal advisors, and paralegals united by a commitment to excellence and client care.</p>
+  <div class="team-grid">
+    <div class="team-card reveal">
+      <div class="team-photo"><span class="team-photo-initials">RM</span></div>
+      <div class="team-info">
+        <h4 class="team-name">Rose Mutua</h4>
+        <div class="team-role">Founding Partner & Lead Advocate</div>
+        <p class="team-bio">Over 20 years of litigation experience across criminal, corporate, and family law. High Court advocate and Certified Public Secretary, based in Machakos.</p>
+        <div class="team-specialties"><span class="spec-tag">Criminal</span><span class="spec-tag">Corporate</span><span class="spec-tag">Family</span></div>
+      </div>
+    </div>
+    <div class="team-card reveal d1">
+      <div class="team-photo"><span class="team-photo-initials">JM</span></div>
+      <div class="team-info">
+        <h4 class="team-name">James Mutinda</h4>
+        <div class="team-role">Senior Associate — Corporate Law</div>
+        <p class="team-bio">Specialist in mergers, acquisitions, and commercial contracts. Extensive experience advising SMEs and corporations across Eastern Kenya.</p>
+        <div class="team-specialties"><span class="spec-tag">Corporate</span><span class="spec-tag">M&A</span><span class="spec-tag">Contracts</span></div>
+      </div>
+    </div>
+    <div class="team-card reveal d2">
+      <div class="team-photo"><span class="team-photo-initials">AW</span></div>
+      <div class="team-info">
+        <h4 class="team-name">Amina Wambua</h4>
+        <div class="team-role">Associate — Family & Succession</div>
+        <p class="team-bio">Compassionate and meticulous in family matters. Skilled in estate planning, probate administration, and matrimonial disputes across Machakos County.</p>
+        <div class="team-specialties"><span class="spec-tag">Family</span><span class="spec-tag">Estate</span><span class="spec-tag">Succession</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="results" id="results">
+  <div class="section-label">Track Record</div>
+  <h2 class="section-title">Notable <em>results</em></h2>
+  <p style="color:var(--muted);max-width:500px;margin-top:14px;font-size:.9rem;line-height:1.8;">A selection of cases where our strategic advocacy made a defining difference. Client identities are protected in line with our confidentiality obligations.</p>
+  <div class="results-grid">
+    <div class="result-card reveal">
+      <div class="result-outcome">Charges Dismissed</div>
+      <div class="result-type">Criminal Defense — Machakos High Court</div>
+      <p class="result-desc">Successfully secured the full dismissal of serious fraud charges against a Machakos businessman through rigorous evidence challenge and procedural application.</p>
+    </div>
+    <div class="result-card reveal d1">
+      <div class="result-outcome">KES 45M Recovered</div>
+      <div class="result-type">Corporate Dispute — Commercial Court</div>
+      <p class="result-desc">Obtained a KES 45 million judgment in favour of our client in a complex breach-of-contract dispute against a major regional supplier, including full legal costs.</p>
+    </div>
+    <div class="result-card reveal d2">
+      <div class="result-outcome">Estate Secured</div>
+      <div class="result-type">Succession — Family Division</div>
+      <p class="result-desc">Successfully defended a client's rightful inheritance against a contested claim involving multiple parties, ensuring the original testator's wishes were upheld in full.</p>
+    </div>
+    <div class="result-card reveal">
+      <div class="result-outcome">Custody Granted</div>
+      <div class="result-type">Family Law — Children's Court</div>
+      <p class="result-desc">Secured primary custody for a mother in a highly contested matter, with a structured co-parenting arrangement that prioritised the best interests of the children.</p>
+    </div>
+    <div class="result-card reveal d1">
+      <div class="result-outcome">KES 120M Acquisition</div>
+      <div class="result-type">Corporate — M&A Advisory</div>
+      <p class="result-desc">Advised on the legal structuring and due diligence of a multi-entity business acquisition, protecting our client from material undisclosed liabilities.</p>
+    </div>
+    <div class="result-card reveal d2">
+      <div class="result-outcome">Sentence Reduced</div>
+      <div class="result-type">Criminal Appeal — Court of Appeal</div>
+      <p class="result-desc">Successfully appealed a custodial sentence, resulting in a significant reduction on grounds of mitigating circumstances and procedural errors at the trial court.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why" id="why">
+  <div class="section-label">Our Advantage</div>
+  <h2 class="section-title">Why clients choose<br><em>Rose Mutua & Advocates</em></h2>
+  <div class="why-grid">
+    <div class="why-item reveal"><div class="why-icon">⚖️</div><h4 class="why-title">Proven Track Record</h4><p class="why-text">Decades of courtroom victories and successful negotiations across Kenya's judicial system. Our results speak before we do.</p></div>
+    <div class="why-item reveal d1"><div class="why-icon">🔒</div><h4 class="why-title">Absolute Discretion</h4><p class="why-text">Every matter is handled with the highest level of confidentiality. Your privacy is not just a policy — it is our professional obligation.</p></div>
+    <div class="why-item reveal d2"><div class="why-icon">🎯</div><h4 class="why-title">Tailored Strategy</h4><p class="why-text">No two cases are the same. We craft bespoke legal strategies built around your specific circumstances and desired outcomes.</p></div>
+    <div class="why-item reveal d3"><div class="why-icon">🤝</div><h4 class="why-title">Direct Advocate Access</h4><p class="why-text">You will always have direct access to your advocate — not a junior clerk. We believe in clear communication and genuine partnership.</p></div>
+    <div class="why-item reveal d1"><div class="why-icon">📋</div><h4 class="why-title">Full-Spectrum Counsel</h4><p class="why-text">From preventive advisory to aggressive litigation, we cover every dimension of your legal needs under one roof in Machakos.</p></div>
+    <div class="why-item reveal d2"><div class="why-icon">🌍</div><h4 class="why-title">Deep Local Roots</h4><p class="why-text">Born and built in Machakos County. We know the local courts, the local landscape, and the communities we proudly serve.</p></div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section class="awards" id="awards">
+  <div class="section-label">Recognition</div>
+  <h2 class="section-title">Awards & <em>Accreditations</em></h2>
+  <div class="awards-grid">
+    <div class="award-card reveal"><span class="award-icon">🏆</span><div class="award-title">Advocate of the Year</div><div class="award-org">Law Society of Kenya</div><div class="award-year">2022</div></div>
+    <div class="award-card reveal d1"><span class="award-icon">⭐</span><div class="award-title">Best Law Firm — Machakos County</div><div class="award-org">Kenya Legal Awards</div><div class="award-year">2021 & 2023</div></div>
+    <div class="award-card reveal d2"><span class="award-icon">🎖️</span><div class="award-title">Excellence in Criminal Defense</div><div class="award-org">East Africa Legal Forum</div><div class="award-year">2020</div></div>
+    <div class="award-card reveal d3"><span class="award-icon">📜</span><div class="award-title">LSK Accredited Practice</div><div class="award-org">Law Society of Kenya</div><div class="award-year">Ongoing</div></div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section class="community" id="community">
+  <div class="section-label">Community</div>
+  <h2 class="section-title">Giving back to <em>Machakos</em></h2>
+  <div class="community-grid">
+    <div class="community-text reveal">
+      <p>Rose Mutua & Advocates believes that access to justice is a right, not a privilege. We are deeply committed to the communities of Machakos County and actively invest in legal education, pro bono representation, and civic empowerment.</p>
+      <p>Through our annual legal aid clinics, school outreach programmes, and partnerships with local organisations, we work to ensure that the most vulnerable members of our community have a voice in the legal system.</p>
+      <div class="community-pillars">
+        <div class="pillar">
+          <div class="pillar-icon">🏫</div>
+          <div><div class="pillar-title">Legal Aid Clinics</div><p class="pillar-desc">Free quarterly legal advice sessions held across Machakos County, serving low-income individuals and families.</p></div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">📚</div>
+          <div><div class="pillar-title">School Outreach</div><p class="pillar-desc">Annual talks at Machakos secondary schools on rights, civic responsibility, and careers in law.</p></div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">🌱</div>
+          <div><div class="pillar-title">Pro Bono Representation</div><p class="pillar-desc">We dedicate a meaningful portion of our capacity each year to representing deserving clients who cannot afford legal fees.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="community-stats reveal d2">
+      <div class="comm-stat"><span class="comm-stat-num">300+</span><span class="comm-stat-label">Pro Bono Clients Served</span></div>
+      <div class="comm-stat"><span class="comm-stat-num">12</span><span class="comm-stat-label">Annual Legal Aid Clinics</span></div>
+      <div class="comm-stat"><span class="comm-stat-num">800+</span><span class="comm-stat-label">Students Reached</span></div>
+      <div class="comm-stat"><span class="comm-stat-num">10+</span><span class="comm-stat-label">Community Partners</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="section-label">Client Voices</div>
+  <h2 class="section-title">What our clients<br><em>say about us</em></h2>
+  <div class="testimonial-grid">
+    <div class="t-card reveal"><div class="stars">★★★★★</div><p class="t-text">Rose Mutua handled our company's merger with exceptional precision. Her knowledge of corporate law and her assertive negotiation style saved us millions. I wouldn't trust anyone else.</p><div class="t-author"><div class="name">James K. Waweru</div><div class="case">Corporate & Business Law</div></div></div>
+    <div class="t-card reveal d1"><div class="stars">★★★★★</div><p class="t-text">During the most difficult period of my life, Rose guided my family through a complex succession dispute. Her composure and command of the law gave us confidence at every step.</p><div class="t-author"><div class="name">Amina O. Hassan</div><div class="case">Estate & Succession</div></div></div>
+    <div class="t-card reveal d2"><div class="stars">★★★★★</div><p class="t-text">I was facing serious criminal charges and feared the worst. Her team was relentless in my defence, and the charges were dismissed entirely. I owe my freedom to Rose Mutua & Advocates.</p><div class="t-author"><div class="name">D. Otieno</div><div class="case">Criminal Defense</div></div></div>
+    <div class="t-card reveal"><div class="stars">★★★★★</div><p class="t-text">As a Machakos business owner, I needed a lawyer who understood the local landscape. Rose's team handled our property dispute swiftly and professionally. Outstanding service.</p><div class="t-author"><div class="name">Peter M. Kioko</div><div class="case">Corporate & Property Law</div></div></div>
+    <div class="t-card reveal d1"><div class="stars">★★★★★</div><p class="t-text">The team handled my divorce with sensitivity and strength. They protected my rights and those of my children throughout a very emotional process. I cannot recommend them highly enough.</p><div class="t-author"><div class="name">F. Mwende</div><div class="case">Family & Matrimonial Law</div></div></div>
+    <div class="t-card reveal d2"><div class="stars">★★★★★</div><p class="t-text">I attended one of their free legal clinics in Machakos Town and got more useful advice in one hour than I had received elsewhere in months. A firm that truly cares about this community.</p><div class="t-author"><div class="name">Community Member</div><div class="case">Legal Aid Clinic, Machakos</div></div></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="section-label">FAQ</div>
+  <h2 class="section-title">Frequently Asked <em>Questions</em></h2>
+  <div class="faq-grid">
+    <div class="faq-item"><div class="faq-q">Is the first consultation really free? <span>+</span></div><div class="faq-a">Yes. We offer every prospective client a free, no-obligation initial consultation. We will listen to your matter, assess its legal dimensions, and advise you on your options — with no cost and no pressure to proceed.</div></div>
+    <div class="faq-item"><div class="faq-q">Where is your office located? <span>+</span></div><div class="faq-a">We are based in Machakos Town, Machakos County. We serve clients across the county and, for certain matters, across the wider Eastern region and Nairobi. Remote and virtual consultations are available on request.</div></div>
+    <div class="faq-item"><div class="faq-q">How long will my case take? <span>+</span></div><div class="faq-a">Timelines vary significantly by matter type and complexity. At your consultation, we will give you a realistic assessment of likely duration. We do not give false timelines — honesty about your case is fundamental to how we work.</div></div>
+    <div class="faq-item"><div class="faq-q">What are your fees? <span>+</span></div><div class="faq-a">Our fees are structured clearly and communicated upfront before you commit to anything. We offer fixed-fee arrangements for certain matters and hourly billing for others. We also handle a proportion of matters on a pro bono basis for eligible clients.</div></div>
+    <div class="faq-item"><div class="faq-q">Can I switch lawyers mid-case to come to you? <span>+</span></div><div class="faq-a">Yes. You have the right to change your legal representation at any time. We handle such transitions with care and professionalism, conducting a thorough review of your case before proceeding to ensure continuity of advocacy.</div></div>
+    <div class="faq-item"><div class="faq-q">Do you handle cases outside Machakos County? <span>+</span></div><div class="faq-a">Yes. While Machakos is our home base, we regularly appear before the High Court and Court of Appeal in Nairobi, and we advise clients with interests across Kenya. Complex cross-border matters are handled on a case-by-case basis.</div></div>
+    <div class="faq-item"><div class="faq-q">Is my information kept confidential? <span>+</span></div><div class="faq-a">Absolutely. Attorney-client privilege is sacred to our practice. Everything you share with us is held in strict confidence, governed by our professional obligations and Kenya's data privacy legislation.</div></div>
+    <div class="faq-item"><div class="faq-q">Do you offer payment plans? <span>+</span></div><div class="faq-a">We understand that legal matters can arise unexpectedly. In appropriate circumstances, we are willing to discuss structured payment arrangements to ensure that quality legal representation remains accessible to our community.</div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div id="contact">
+  <div class="contact-wrap">
+    <div class="contact-info">
+      <div class="section-label">Get In Touch</div>
+      <h2 class="section-title">Begin your<br><em>legal journey</em></h2>
+      <div class="gold-line"></div>
+      <p style="color:var(--muted);line-height:1.9;margin-bottom:48px;font-size:.9rem;">Your first consultation is free. We'll listen, assess your situation, and give you clear, honest guidance on your next steps — no jargon, no pressure.</p>
+      <div class="contact-detail"><span class="c-label">Office Address</span><span class="c-val">Machakos Town, Machakos County, Kenya</span></div>
+      <div class="contact-detail"><span class="c-label">Phone</span><span class="c-val">+254 700 000 000</span></div>
+      <div class="contact-detail"><span class="c-label">Email</span><span class="c-val">info@rosemutua.co.ke</span></div>
+      <div class="contact-detail"><span class="c-label">Office Hours</span><span class="c-val">Monday – Friday: 8:00 AM – 6:00 PM<br>Saturday: 9:00 AM – 1:00 PM</span></div>
+      <div class="contact-detail"><span class="c-label">P.O. Box</span><span class="c-val">P.O. Box 1234 – 90100, Machakos</span></div>
+      <div class="social-row">
+        <a href="#" class="social-btn" title="LinkedIn">in</a>
+        <a href="#" class="social-btn" title="Twitter/X">𝕏</a>
+        <a href="#" class="social-btn" title="Facebook">f</a>
+        <a href="#" class="social-btn" title="WhatsApp">W</a>
+      </div>
+    </div>
+    <div class="contact-form-side">
+      <h3 class="section-title" style="font-size:1.75rem;margin-bottom:32px;">Send us a <em>message</em></h3>
+      <div class="form-row">
+        <div class="form-group"><label>First Name</label><input type="text" placeholder="Jane"/></div>
+        <div class="form-group"><label>Last Name</label><input type="text" placeholder="Doe"/></div>
+      </div>
+      <div class="form-group"><label>Email Address</label><input type="email" placeholder="jane@example.com"/></div>
+      <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="+254 7XX XXX XXX"/></div>
+      <div class="form-group">
+        <label>Practice Area</label>
+        <select><option value="">Select a practice area</option><option>Corporate & Business Law</option><option>Criminal Defense</option><option>Family & Matrimonial Law</option><option>Estate & Succession</option><option>Other / Not Sure</option></select>
+      </div>
+      <div class="form-group">
+        <label>Preferred Consultation Method</label>
+        <select><option value="">Select a method</option><option>In-person (Machakos Office)</option><option>Phone Call</option><option>Video Call</option></select>
+      </div>
+      <div class="form-group"><label>Brief Description of Your Matter</label><textarea placeholder="Briefly describe your legal matter. Everything you share is confidential."></textarea></div>
+      <button class="form-submit" id="submitBtn">Request Free Consultation →</button>
+    </div>
+  </div>
+</div>
+
+<!-- MAP -->
+<div class="map-band">
+  <div class="map-inner">
+    <span class="pin">📍</span>
+    <h4>Rose Mutua & Advocates</h4>
+    <p>Machakos Town, Machakos County, Kenya</p>
+    <a href="https://maps.google.com/?q=Machakos+Town+Kenya" target="_blank">View on Google Maps →</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="logo">Rose Mutua & Advocates</span>
+      <p>A premier law firm rooted in Machakos County, delivering bold, principled legal counsel across Kenya since 2004.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Practice Areas</h5>
+      <ul>
+        <li><a href="#practice">Corporate & Business</a></li>
+        <li><a href="#practice">Criminal Defense</a></li>
+        <li><a href="#practice">Family & Matrimonial</a></li>
+        <li><a href="#practice">Estate & Succession</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>The Firm</h5>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#team">Our Team</a></li>
+        <li><a href="#results">Notable Results</a></li>
+        <li><a href="#awards">Awards</a></li>
+        <li><a href="#community">Community</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="#contact">Book a Consultation</a></li>
+        <li><a href="tel:+254700000000">+254 700 000 000</a></li>
+        <li><a href="mailto:info@rosemutua.co.ke">info@rosemutua.co.ke</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 Rose Mutua & Advocates. All rights reserved. | Machakos County, Kenya</div>
+    <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Cookie Policy</a></div>
+  </div>
+</footer>
+
+<script>
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
+    setTimeout(() => { ring.style.left = e.clientX + 'px'; ring.style.top = e.clientY + 'px'; }, 60);
+  });
+  document.querySelectorAll('a, button, .practice-card, .faq-item, .award-card, .team-card').forEach(el => {
+    el.addEventListener('mouseenter', () => { ring.style.transform='translate(-50%,-50%) scale(1.8)'; ring.style.opacity='1'; cursor.style.transform='translate(-50%,-50%) scale(0.5)'; });
+    el.addEventListener('mouseleave', () => { ring.style.transform='translate(-50%,-50%) scale(1)'; ring.style.opacity='0.6'; cursor.style.transform='translate(-50%,-50%) scale(1)'; });
+  });
+
+  // Scroll reveal
+  const obs = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), {threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // FAQ
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if(!isOpen) item.classList.add('open');
+    });
+  });
+
+  // Form
+  document.getElementById('submitBtn').addEventListener('click', () => {
+    alert('Thank you! Your consultation request has been received. The Rose Mutua & Advocates team will contact you within 24 hours.');
+  });
+
+  // Nav border on scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('mainNav').style.borderBottomColor = window.scrollY > 80 ? 'rgba(201,168,76,0.18)' : 'rgba(201,168,76,0.08)';
+  });
+</script>
+</body>
+</html>
