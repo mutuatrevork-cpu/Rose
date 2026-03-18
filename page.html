@@ -272,7 +272,7 @@
     .ft-legal a:hover{color:var(--gold)}
     .admin-bar{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--black);padding:8px 20px;font-family:var(--sans);font-size:.67rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;text-decoration:none;z-index:99;opacity:.7;transition:opacity .3s}
     .admin-bar:hover{opacity:1}
-    /* ── TABLET ≤ 960px ─────────────────────────────────── */
+    /* ── TABLET / SPLIT SCREEN ≤ 700px ──────────────────── */
     @media(max-width:1100px){
       nav{padding:14px 28px}
       .nav-links{gap:18px}
@@ -280,49 +280,45 @@
       .nav-cta{padding:7px 14px;font-size:.66rem}
     }
     @media(max-width:700px){
+      html,body{overflow-x:hidden;max-width:100vw}
       nav{padding:12px 16px;background:rgba(9,9,10,.98)}
       .nav-links,.nav-cta{display:none}
-      .nav-hamburger{display:flex;order:-1}
-      .nav-logo{position:absolute;left:50%;transform:translateX(-50%)}
+      .nav-hamburger{display:flex;flex-shrink:0}
+      .nav-logo{min-width:0;flex:1;overflow:hidden}
+      .nav-logo-text{font-size:.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:200px}
+      .nav-logo-img{max-height:30px}
       .nav-mobile-right{display:flex}
       .mobile-menu{display:flex}
-      .page-hero,.page-body,.post-body{padding-left:28px;padding-right:28px}
-      .page-hero{padding-top:70px;padding-bottom:44px}
-      .page-body{padding-top:48px;padding-bottom:48px;max-width:100%}
+      .page-hero,.page-body,.post-body{padding-left:20px;padding-right:20px;max-width:100vw;overflow:hidden}
+      .page-hero{padding-top:68px;padding-bottom:40px}
+      .page-body{padding-top:44px;padding-bottom:44px;max-width:100%}
+      .page-title{max-width:100%;word-break:break-word}
       .mv-grid,.values-grid{grid-template-columns:1fr 1fr}
       .perks-gp{grid-template-columns:1fr 1fr}
-      .cpage-grid{grid-template-columns:1fr}
-      .book-options{grid-template-columns:1fr}
-      .book-steps{grid-template-columns:1fr 1fr}
-      .med-steps{grid-template-columns:1fr 1fr}
-      .benefits-grid{grid-template-columns:1fr 1fr}
-      .pb-stats{grid-template-columns:1fr 1fr}
-      .ext-links-grid{grid-template-columns:1fr}
-      .c-info,.c-form{padding:36px 28px}
-      .cta-band{grid-template-columns:1fr;text-align:center}
-      .adr-svc{grid-template-columns:1fr}
-      .resources-grid{grid-template-columns:1fr 1fr}
-      .ft-main{grid-template-columns:1fr 1fr;padding:40px 28px}
-      .ft-bottom{padding:16px 28px;flex-direction:column;text-align:center}
+      .cpage-grid,.book-options,.ext-links-grid,.cta-band,.adr-svc{grid-template-columns:1fr}
+      .book-steps,.med-steps,.benefits-grid,.pb-stats,.resources-grid{grid-template-columns:1fr 1fr}
+      .c-info,.c-form{padding:36px 20px}
+      .cta-band{text-align:center}
+      .ft-main{grid-template-columns:1fr 1fr;padding:40px 20px}
+      .ft-bottom{padding:16px 20px;flex-direction:column;text-align:center}
     }
 
-    /* ── MOBILE ≤ 640px ─────────────────────────────────── */
-    @media(max-width:640px){
-      .page-hero,.page-body,.post-body{padding-left:18px;padding-right:18px}
+    /* ── MOBILE ≤ 480px ──────────────────────────────────── */
+    @media(max-width:480px){
+      .page-hero,.page-body,.post-body{padding-left:16px;padding-right:16px}
       .page-hero{padding-top:56px;padding-bottom:32px}
       .page-body{padding-top:32px;padding-bottom:32px}
-      .page-title{font-size:clamp(1.9rem,9vw,3rem)}
-      .page-subtitle{font-size:.85rem}
+      .page-title{font-size:clamp(1.8rem,9vw,2.8rem)}
+      .page-subtitle{font-size:.84rem}
       .mv-grid,.values-grid,.perks-gp,.book-steps,.med-steps,.benefits-grid,.pb-stats,.resources-grid{grid-template-columns:1fr}
-      .ft-main{grid-template-columns:1fr;padding:32px 18px;gap:24px}
-      .ft-bottom{padding:14px 18px}
-      .c-info,.c-form{padding:28px 18px}
-      .sec-title{font-size:clamp(1.6rem,7vw,2.2rem)}
-      .adr-svc{grid-template-columns:1fr}
+      .ft-main{grid-template-columns:1fr;padding:30px 16px;gap:22px}
+      .ft-bottom{padding:14px 16px}
+      .c-info,.c-form{padding:28px 16px}
+      .sec-title{font-size:clamp(1.5rem,7vw,2.1rem)}
     }
 
-    /* ── SMALL PHONES ≤ 380px ───────────────────────────── */
-    @media(max-width:380px){
+    /* ── SMALL PHONES ≤ 360px ───────────────────────────── */
+    @media(max-width:360px){
       .page-hero,.page-body,.post-body{padding-left:14px;padding-right:14px}
       .ft-main{padding:24px 14px}
     }
