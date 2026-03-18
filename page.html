@@ -16,8 +16,9 @@
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
     :root{--black:#09090a;--dark:#0f0f0d;--mid:#181816;--card:#1d1d1b;--gold:#c9a84c;--gold-light:#e2c47a;--gold-dim:rgba(201,168,76,0.12);--white:#f4f1eb;--muted:#878574;--serif:'Cormorant Garamond',Georgia,serif;--sans:'Outfit',sans-serif}
-    html{scroll-behavior:smooth}
-    body{background:var(--black);color:var(--white);font-family:var(--sans);font-weight:300;overflow-x:hidden;cursor:none}
+    html{scroll-behavior:smooth;overflow-x:hidden;max-width:100%}
+    body{background:var(--black);color:var(--white);font-family:var(--sans);font-weight:300;overflow-x:hidden;cursor:none;max-width:100%}
+    @media(hover:none){body{cursor:auto}.cursor,.cursor-ring{display:none!important}}
     .cursor{position:fixed;width:10px;height:10px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
     .cursor-ring{position:fixed;width:36px;height:36px;border:1px solid var(--gold);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .25s;opacity:.6}
 
