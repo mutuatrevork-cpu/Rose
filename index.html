@@ -18,8 +18,7 @@
     :root{--black:#09090a;--dark:#0f0f0d;--mid:#181816;--card:#1d1d1b;--gold:#c9a84c;--gold-light:#e2c47a;--gold-dim:rgba(201,168,76,0.12);--white:#f4f1eb;--muted:#878574;--serif:'Cormorant Garamond',Georgia,serif;--sans:'Outfit',sans-serif}
     html{scroll-behavior:smooth;overflow-x:hidden}
     body{background:var(--black);color:var(--white);font-family:var(--sans);font-weight:300;overflow-x:hidden;cursor:none}
-    *{box-sizing:border-box;max-width:100%}
-    img,video,canvas,svg{max-width:100%;height:auto}
+    img,video,iframe{max-width:100%;height:auto}
     @media(hover:none){body{cursor:auto}.cursor,.cursor-ring{display:none!important}}
 
     /* cursor */
@@ -61,43 +60,20 @@
     .mobile-pages-list{list-style:none;display:flex;flex-direction:column;gap:0;margin-bottom:24px}
     .mobile-pages-list li a{display:block;font-size:.83rem;color:var(--muted);text-decoration:none;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.03);transition:color .3s;letter-spacing:.04em}
     .mobile-pages-list li a:hover{color:var(--gold)}
-    .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:140px 5% 100px;position:relative;overflow:hidden;background:var(--black);width:100%;box-sizing:border-box}
-    /* Default hero background */
-    .hero-default-bg{position:absolute;inset:0;z-index:0;background:
-      radial-gradient(ellipse 80% 60% at 70% 40%, rgba(201,168,76,.06) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 80% at 20% 60%, rgba(201,168,76,.03) 0%, transparent 55%),
-      repeating-linear-gradient(45deg, transparent, transparent 60px, rgba(201,168,76,.015) 60px, rgba(201,168,76,.015) 61px),
-      repeating-linear-gradient(-45deg, transparent, transparent 60px, rgba(201,168,76,.01) 60px, rgba(201,168,76,.01) 61px),
-      linear-gradient(160deg, #0d0d0b 0%, #09090a 40%, #0b0b09 100%)}
+    .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:140px 5% 100px;position:relative;overflow:hidden;background:var(--black)}
+    /* Hero background */
+    .hero-default-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 80% 60% at 70% 40%, rgba(201,168,76,.06) 0%, transparent 60%),radial-gradient(ellipse 50% 80% at 20% 60%, rgba(201,168,76,.03) 0%, transparent 55%),linear-gradient(160deg, #0d0d0b 0%, #09090a 40%, #0b0b09 100%)}
     .hero-default-corner{position:absolute;bottom:0;right:0;width:45%;height:100%;background:linear-gradient(135deg,transparent 0%,rgba(201,168,76,.04) 50%,transparent 100%);z-index:0}
-    /* HERO SLIDER */
     .hero-slides{position:absolute;inset:0;z-index:0}
     .hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.6s ease-in-out;animation:kenburns 12s ease-in-out infinite alternate}
     .hero-slide.active{opacity:1}
-    .hero-slide.prev{opacity:0}
     @keyframes kenburns{from{transform:scale(1)}to{transform:scale(1.06)}}
     .hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(9,9,10,.88) 45%,rgba(9,9,10,.55) 100%),linear-gradient(to bottom,rgba(9,9,10,.4) 0%,transparent 30%,transparent 70%,rgba(9,9,10,.6) 100%);z-index:1}
-    .hero-content{position:relative;z-index:2;width:100%;max-width:100%;overflow:hidden;box-sizing:border-box}
+    .hero-content{position:relative;z-index:2}
     .hero-ring{position:absolute;border-radius:50%;pointer-events:none}
     .hero-ring1{top:-20%;right:-8%;width:680px;height:680px;border:1px solid rgba(201,168,76,.07);animation:spin 50s linear infinite}
     .hero-ring2{top:8%;right:4%;width:400px;height:400px;border:1px solid rgba(201,168,76,.05);animation:spin 32s linear infinite reverse}
     .hero-ring3{bottom:-10%;left:-5%;width:520px;height:520px;border:1px solid rgba(201,168,76,.04);animation:spin 44s linear infinite}
-    /* Default hero background — rich dark gradient with subtle gold pattern */
-    .hero-default-bg{position:absolute;inset:0;z-index:0;background:
-      radial-gradient(ellipse 80% 60% at 70% 40%, rgba(201,168,76,.06) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 80% at 20% 60%, rgba(201,168,76,.03) 0%, transparent 55%),
-      repeating-linear-gradient(45deg, transparent, transparent 60px, rgba(201,168,76,.015) 60px, rgba(201,168,76,.015) 61px),
-      repeating-linear-gradient(-45deg, transparent, transparent 60px, rgba(201,168,76,.01) 60px, rgba(201,168,76,.01) 61px),
-      linear-gradient(160deg, #0d0d0b 0%, #09090a 40%, #0b0b09 100%)}
-    .hero-default-corner{position:absolute;bottom:0;right:0;width:45%;height:100%;background:linear-gradient(135deg,transparent 0%,rgba(201,168,76,.04) 50%,transparent 100%);z-index:0}
-    /* HERO SLIDER */
-    .hero-slides{position:absolute;inset:0;z-index:0}
-    .hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.6s ease-in-out;animation:kenburns 12s ease-in-out infinite alternate}
-    .hero-slide.active{opacity:1}
-    .hero-slide.prev{opacity:0}
-    @keyframes kenburns{from{transform:scale(1)}to{transform:scale(1.06)}}
-    .hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(9,9,10,.88) 45%,rgba(9,9,10,.55) 100%),linear-gradient(to bottom,rgba(9,9,10,.4) 0%,transparent 30%,transparent 70%,rgba(9,9,10,.6) 100%);z-index:1}
-    .hero-content{position:relative;z-index:2;max-width:100%;overflow:hidden}
     .hero-ring{position:absolute;border-radius:50%;pointer-events:none}
     .hero-ring1{top:-20%;right:-8%;width:680px;height:680px;border:1px solid rgba(201,168,76,.07);animation:spin 50s linear infinite}
     .hero-ring2{top:8%;right:4%;width:400px;height:400px;border:1px solid rgba(201,168,76,.05);animation:spin 32s linear infinite reverse}
@@ -277,71 +253,75 @@
     .admin-bar{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--black);padding:10px 22px;font-family:var(--sans);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;text-decoration:none;z-index:99;opacity:.7;transition:opacity .3s}
     .admin-bar:hover{opacity:1}
 
-    /* ── RESPONSIVE — WordPress style ─────────────────────
-       One rule: everything uses % or vw padding.
-       Content never wider than the viewport.
-    ─────────────────────────────────────────────────────── */
+    /* ── RESPONSIVE ─────────────────────────────────────── */
     @media(max-width:1100px){
       nav{padding:14px 30px}
       .nav-links{gap:22px}
       .nav-cta{padding:7px 18px}
     }
+
     @media(max-width:700px){
-      nav{padding:10px 16px;background:rgba(9,9,10,.98)}
+      /* Nav */
+      nav{padding:10px 4%;background:rgba(9,9,10,.98)}
       .nav-links,.nav-cta{display:none}
       .nav-hamburger{display:flex;flex-shrink:0}
-      .nav-logo{flex:1;min-width:0}
-      .nav-logo-text{font-size:.9rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+      .nav-logo{flex:1;min-width:0;overflow:hidden}
+      .nav-logo-text{font-size:.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
       .nav-logo-img{max-height:30px}
       .nav-mobile-right{display:flex}
       .mobile-menu{display:flex}
+      /* Hide decorative rings on mobile */
       .hero-ring1,.hero-ring2,.hero-ring3{display:none}
-      .hero,.hero *{box-sizing:border-box}
-      .hero{min-height:unset;padding:100px 5% 60px;width:100%}
-      .hero-content{width:100%}
-      .hero-eyebrow{font-size:.6rem;letter-spacing:.2em;flex-wrap:wrap;white-space:normal}
-      .hero-title{font-size:clamp(2.4rem,8vw,5rem);white-space:normal;overflow-wrap:break-word;width:100%}
-      .hero-title .indent{padding-left:6%}
-      .hero-sub{font-size:.9rem;width:100%}
-      .hero-divider{height:40px;margin:20px 0}
-      .hero-actions{margin-top:20px;flex-wrap:wrap;gap:10px;width:100%}
+      /* Hero — remove 100vh so no blank gap */
+      .hero{min-height:0;padding:90px 4% 50px}
+      .hero-eyebrow{font-size:.6rem;letter-spacing:.06em;flex-wrap:wrap}
+      .hero-title{font-size:clamp(2.4rem,8vw,4.8rem)}
+      .hero-title .indent{padding-left:5%}
+      .hero-sub{font-size:.9rem}
+      .hero-divider{height:36px;margin:18px 0}
+      .hero-actions{margin-top:18px;gap:10px}
       .hero-scroll,.hero-location{display:none}
-      section{padding:70px 5%}
-      .stats-band{padding:30px 5%}
+      /* Sections */
+      section{padding:64px 4%}
+      .stats-band{padding:28px 4%}
+      .section-title{font-size:clamp(1.9rem,6vw,3rem)}
+      /* Grids */
       .about-grid,.contact-wrap,.community-grid,.faq-grid{grid-template-columns:1fr}
       .practice-grid,.results-grid,.testimonial-grid{grid-template-columns:1fr}
       .team-grid,.why-grid,.awards-grid,.community-stats{grid-template-columns:1fr 1fr}
       .process-steps{grid-template-columns:1fr 1fr}
       .process-steps::before{display:none}
-      .contact-info,.contact-form-side{padding:50px 5%}
+      .contact-info,.contact-form-side{padding:44px 4%}
       .form-row{grid-template-columns:1fr 1fr}
-      .footer-top{grid-template-columns:1fr 1fr;padding:40px 5%}
-      .footer-bottom{padding:16px 5%;flex-direction:column;text-align:center;gap:10px}
+      .footer-top{grid-template-columns:1fr 1fr;padding:36px 4%}
+      .footer-bottom{padding:14px 4%;flex-direction:column;text-align:center;gap:8px}
     }
+
     @media(max-width:480px){
-      nav{padding:10px 4%}
-      .hero{padding:88px 4% 52px}
-      .hero-title{font-size:clamp(2rem,10vw,3.2rem)}
-      .hero-title .indent{padding-left:5%}
-      .hero-actions{flex-direction:column}
-      .btn-primary,.btn-ghost{width:100%;text-align:center;padding:13px 20px}
-      section{padding:60px 4%}
-      .stats-band{padding:24px 4%}
-      .team-grid,.why-grid,.process-steps{grid-template-columns:1fr}
-      .contact-info,.contact-form-side{padding:40px 4%}
-      .form-row{grid-template-columns:1fr}
-      .footer-top{grid-template-columns:1fr;padding:32px 4%}
-      .footer-bottom{padding:14px 4%}
-    }
-    @media(max-width:360px){
-      nav{padding:9px 3%}
-      .hero{padding:82px 3% 48px}
+      nav{padding:10px 3%}
+      .hero{padding:84px 3% 46px}
       .hero-eyebrow{display:none}
-      .hero-title{font-size:clamp(1.9rem,9.5vw,2.8rem)}
-      section{padding:52px 3%}
-      .stats-band{padding:20px 3%}
-      .footer-top{padding:28px 3%}
+      .hero-title{font-size:clamp(2rem,9.5vw,3rem)}
+      .hero-title .indent{padding-left:4%}
+      .hero-sub{font-size:.86rem}
+      .hero-actions{flex-direction:column;align-items:stretch}
+      .btn-primary,.btn-ghost{width:100%;text-align:center;padding:13px 16px;font-size:.71rem}
+      section{padding:56px 3%}
+      .stats-band{padding:22px 3%}
+      .stat-number{font-size:2.2rem}
+      .team-grid,.why-grid,.process-steps{grid-template-columns:1fr}
+      .contact-info,.contact-form-side{padding:38px 3%}
+      .form-row{grid-template-columns:1fr}
+      .footer-top{grid-template-columns:1fr;padding:28px 3%}
       .footer-bottom{padding:12px 3%}
+      .section-title{font-size:clamp(1.7rem,7.5vw,2.4rem)}
+    }
+
+    @media(max-width:360px){
+      .hero{padding:78px 3% 40px}
+      .hero-title{font-size:clamp(1.85rem,9vw,2.6rem)}
+      section{padding:48px 3%}
+      .footer-top{padding:24px 3%}
     }
   </style>
 </head>
