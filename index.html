@@ -256,6 +256,7 @@
     /* ── RESPONSIVE — container-based ───────────────────── */
     @media(max-width:700px){
       .container{padding:0 15px}
+      section{overflow-x:hidden}
       nav{padding:10px 15px;background:rgba(9,9,10,.98)}
       .nav-links,.nav-cta{display:none}
       .nav-hamburger{display:flex;flex-shrink:0}
@@ -285,6 +286,8 @@
     @media(max-width:480px){
       .container{padding:0 12px}
       nav{padding:10px 12px}
+      .practice-card{padding:24px 18px}
+      .p-num{font-size:2.8rem}
       .hero-actions{flex-direction:column;align-items:stretch}
       .btn-primary,.btn-ghost{width:100%;text-align:center;padding:13px 16px;font-size:.71rem}
       .team-grid,.why-grid,.process-steps{grid-template-columns:1fr}
@@ -389,7 +392,7 @@
   <div class="container">
   <div class="section-label">What We Do</div>
   <h2 class="section-title">Our Practice <em>Areas</em></h2>
-  <p style="color:var(--muted);max-width:520px;margin-top:16px;font-size:.92rem;line-height:1.85">Comprehensive legal services across four core disciplines, each handled with specialised expertise.</p>
+  <p style="color:var(--muted);margin-top:16px;font-size:.92rem;line-height:1.85">Comprehensive legal services across four core disciplines, each handled with specialised expertise.</p>
   <div class="practice-grid" id="practiceGrid"></div>
   </div>
 </section>
