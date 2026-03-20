@@ -534,19 +534,20 @@ function get(k){const d=gc(k);return d!==null?d:JSON.parse(JSON.stringify(D[k]||
 async function loadFromCloud(){
   try {
     const cfg = JSON.parse(localStorage.getItem('rm_cloud')||'{}');
-    if(!cfg.binId||!cfg.apiKey) return;
+    if(!cfg.binId||!cfg.apiKey) return false;
     const r = await fetch(`https://api.jsonbin.io/v3/b/${cfg.binId}/latest`,{headers:{'X-Master-Key':cfg.apiKey}});
-    if(!r.ok) return;
+    if(!r.ok) return false;
     const j = await r.json();
     const data = j.record||{};
     if(data.content) localStorage.setItem(RM, JSON.stringify(data.content));
     if(data.images) localStorage.setItem(IK, JSON.stringify(data.images));
-  } catch(e){}
+    return true;
+  } catch(e){ return false; }
 }
 
-(async()=>{
-  await Promise.race([loadFromCloud(), new Promise(r=>setTimeout(r,3000))]);
+const el=document.getElementById('pageContent');
 
+function runPage(){
   const slug=new URLSearchParams(location.search).get('p')||'about';
   const postId=new URLSearchParams(location.search).get('id');
   const sd=get('seo');
@@ -554,15 +555,12 @@ async function loadFromCloud(){
   if(ps.title){document.getElementById('pageTitle').textContent=ps.title;document.getElementById('ogTitle').content=ps.title;}
   if(ps.desc){document.getElementById('metaDesc').content=ps.desc;document.getElementById('ogDesc').content=ps.desc;}
   if(ps.keywords)document.getElementById('metaKw').content=ps.keywords;
-
   // Footer
   const ct=gc('contact')||{};
   document.getElementById('fContactMini').innerHTML=`<a href="tel:${esc(ct.phone||'+254700000000')}">${esc(ct.phone||'+254 700 000 000')}</a><a href="mailto:${esc(ct.email||'info@rosemutua.co.ke')}">${esc(ct.email||'info@rosemutua.co.ke')}</a><span>${esc(ct.address||'Machakos Town, Kenya')}</span>`;
   const prac=gc('practice')||[];
   document.getElementById('fPractice').innerHTML=prac.slice(0,5).map(p=>`<li><a href="page.html?p=practice">${esc(p.name)}</a></li>`).join('');
-
   // Route
-  const el=document.getElementById('pageContent');
   if(slug==='about')renderAbout();
   else if(slug==='practice')renderPractice();
   else if(slug==='team')renderTeam();
@@ -580,7 +578,13 @@ async function loadFromCloud(){
   else if(slug==='privacy')renderPolicy('privacy');
   else if(slug==='terms')renderPolicy('terms');
   else renderAbout();
-})();
+}
+
+// Render immediately with local/default data — no waiting
+runPage();
+
+// Then silently fetch cloud in background and re-render if new data found
+loadFromCloud().then(updated => { if(updated) runPage(); });
 
 function renderAbout(){
   const d=get('page_about'),a=gc('about')||{},team=gc('team')||[];

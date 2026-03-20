@@ -73,7 +73,7 @@
     .hero-slide.active{opacity:1}
     @keyframes kenburns{from{transform:scale(1)}to{transform:scale(1.06)}}
     .hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(9,9,10,.88) 45%,rgba(9,9,10,.55) 100%),linear-gradient(to bottom,rgba(9,9,10,.4) 0%,transparent 30%,transparent 70%,rgba(9,9,10,.6) 100%);z-index:1}
-    .hero-content{position:relative;z-index:2;overflow:hidden}
+    .hero-content{position:relative;z-index:2}
     .hero-ring{position:absolute;border-radius:50%;pointer-events:none}
     .hero-ring1{top:-20%;right:-8%;width:680px;height:680px;border:1px solid rgba(201,168,76,.07);animation:spin 50s linear infinite}
     .hero-ring2{top:8%;right:4%;width:400px;height:400px;border:1px solid rgba(201,168,76,.05);animation:spin 32s linear infinite reverse}
@@ -85,7 +85,7 @@
     .hero-title em{font-style:italic;color:var(--gold-light)}
     .hero-title .indent{display:block;padding-left:clamp(30px,6vw,160px)}
     .hero-divider{width:1px;height:72px;background:var(--gold);margin:44px 0;opacity:0;animation:fadeUp .8s .6s forwards}
-    .hero-sub{font-size:.98rem;color:var(--muted);line-height:1.85;max-width:420px;width:100%;opacity:0;animation:fadeUp .8s .75s forwards}
+    .hero-sub{font-size:.98rem;color:var(--muted);line-height:1.85;width:100%;opacity:0;animation:fadeUp .8s .75s forwards}
     .hero-actions{display:flex;gap:18px;margin-top:44px;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .9s forwards}
     .btn-primary{background:var(--gold);color:var(--black);padding:15px 42px;font-family:var(--sans);font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;border:none;cursor:none;transition:all .3s;text-decoration:none;display:inline-block}
     .btn-primary:hover{background:var(--gold-light);transform:translateY(-2px)}
@@ -751,22 +751,28 @@ function closeMobileMenu(){
 async function loadFromCloud(){
   try {
     const cfg = JSON.parse(localStorage.getItem('rm_cloud')||'{}');
-    if(!cfg.binId||!cfg.apiKey) return;
+    if(!cfg.binId||!cfg.apiKey) return false;
     const r = await fetch(`https://api.jsonbin.io/v3/b/${cfg.binId}/latest`,{headers:{'X-Master-Key':cfg.apiKey}});
-    if(!r.ok) return;
+    if(!r.ok) return false;
     const j = await r.json();
     const data = j.record||{};
     if(data.content) localStorage.setItem(STORAGE_KEY, JSON.stringify(data.content));
     if(data.images) localStorage.setItem(IMG_KEY, JSON.stringify(data.images));
-  } catch(e){}
+    return true;
+  } catch(e){ return false; }
 }
 
-// Run: cloud fetch (max 3s) → applyBrand → render
-(async()=>{
-  await Promise.race([loadFromCloud(), new Promise(r=>setTimeout(r,3000))]);
-  try { applyBrand(); } catch(e){}
-  try { render(); } catch(e){ console.error('Render error:',e); }
-})();
+// Render immediately — no waiting for cloud
+try { applyBrand(); } catch(e){}
+try { render(); } catch(e){ console.error('Render error:',e); }
+
+// Fetch cloud in background — re-render silently if new data found
+loadFromCloud().then(updated => {
+  if(updated){
+    try { applyBrand(); } catch(e){}
+    try { render(); } catch(e){}
+  }
+});
 </script>
 </body>
 </html>
