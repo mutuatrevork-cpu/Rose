@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
   <title id="pageTitle">Rose Mutua & Advocates — Machakos Law Firm</title>
   <meta name="description" id="metaDesc" content="Rose Mutua & Advocates is Machakos County's leading law firm, offering expert legal counsel in corporate law, criminal defense, family law, and estate succession."/>
   <meta name="keywords" id="metaKw" content="law firm Machakos, lawyer Kenya, criminal defense Machakos, family law Kenya"/>
@@ -17,7 +17,7 @@
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
     :root{--black:#09090a;--dark:#0f0f0d;--mid:#181816;--card:#1d1d1b;--gold:#c9a84c;--gold-light:#e2c47a;--gold-dim:rgba(201,168,76,0.12);--white:#f4f1eb;--muted:#878574;--serif:'Cormorant Garamond',Georgia,serif;--sans:'Outfit',sans-serif}
     html{scroll-behavior:smooth;overflow-x:hidden}
-    body{background:var(--black);color:var(--white);font-family:var(--sans);font-weight:300;overflow-x:hidden;cursor:none}
+    body{background:var(--black);color:var(--white);font-family:var(--sans);font-weight:300;overflow-x:hidden;cursor:none;padding-top:env(safe-area-inset-top)}
     img,video,iframe{max-width:100%;height:auto}
     @media(hover:none){body{cursor:auto}.cursor,.cursor-ring{display:none!important}}
 
@@ -30,7 +30,7 @@
     .cursor-ring{position:fixed;width:36px;height:36px;border:1px solid var(--gold);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .25s;opacity:.6}
 
     /* ── NAV ──────────────────────────────────────────── */
-    nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:18px 0;background:linear-gradient(to bottom,rgba(9,9,10,.97) 60%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid rgba(201,168,76,.08);transition:border-color .3s}
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:calc(18px + env(safe-area-inset-top)) 0 18px;background:linear-gradient(to bottom,rgba(9,9,10,.97) 60%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid rgba(201,168,76,.08);transition:border-color .3s}
     .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0}
     .nav-logo-img{max-height:38px;max-width:140px;object-fit:contain}
     .nav-logo-text{font-family:var(--serif);font-size:1.05rem;font-weight:600;letter-spacing:.06em;color:var(--gold)}
@@ -64,7 +64,7 @@
     .mobile-pages-list{list-style:none;display:flex;flex-direction:column;gap:0;margin-bottom:24px}
     .mobile-pages-list li a{display:block;font-size:.83rem;color:var(--muted);text-decoration:none;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.03);transition:color .3s;letter-spacing:.04em}
     .mobile-pages-list li a:hover{color:var(--gold)}
-    .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:140px 0 100px;position:relative;overflow:hidden;background:var(--black)}
+    .hero{min-height:100dvh;display:flex;flex-direction:column;justify-content:center;padding:calc(140px + env(safe-area-inset-top)) 0 100px;position:relative;overflow:hidden;background:var(--black)}
     /* Hero background */
     .hero-default-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 80% 60% at 70% 40%, rgba(201,168,76,.06) 0%, transparent 60%),radial-gradient(ellipse 50% 80% at 20% 60%, rgba(201,168,76,.03) 0%, transparent 55%),linear-gradient(160deg, #0d0d0b 0%, #09090a 40%, #0b0b09 100%)}
     .hero-default-corner{position:absolute;bottom:0;right:0;width:45%;height:100%;background:linear-gradient(135deg,transparent 0%,rgba(201,168,76,.04) 50%,transparent 100%);z-index:0}
@@ -257,7 +257,7 @@
     @media(max-width:700px){
       .container{padding:0 15px}
       section{overflow-x:hidden}
-      nav{padding:10px 15px;background:rgba(9,9,10,.98)}
+      nav{padding:calc(10px + env(safe-area-inset-top)) 15px 10px;background:rgba(9,9,10,.98)}
       .nav-links,.nav-cta{display:none}
       .nav-hamburger{display:flex;flex-shrink:0}
       .nav-logo{flex:1;min-width:0;overflow:hidden}
@@ -266,7 +266,7 @@
       .nav-mobile-right{display:flex}
       .mobile-menu{display:flex}
       .hero-ring1,.hero-ring2,.hero-ring3{display:none}
-      .hero{min-height:0;padding:80px 0 40px}
+      .hero{min-height:100dvh;padding:calc(80px + env(safe-area-inset-top)) 0 40px}
       .hero-eyebrow{display:none}
       .hero-divider{height:28px;margin:14px 0}
       .hero-actions{margin-top:16px;gap:10px}
