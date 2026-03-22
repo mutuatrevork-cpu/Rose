@@ -101,7 +101,9 @@
     .stat-item{text-align:center;padding:0 16px}
     .stat-number{font-family:var(--serif);font-size:3rem;font-weight:300;color:var(--gold);line-height:1;display:block}
     .stat-label{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:8px;display:block}
-    section{padding:120px 0}
+    section{padding:120px 0;overflow:hidden}
+    .box-a{position:absolute;bottom:-20px;right:-20px;width:140px;height:140px;border:1px solid var(--gold);opacity:.2;pointer-events:none}
+    .box-b{position:absolute;top:-14px;left:-14px;width:70px;height:70px;border:1px solid var(--gold);opacity:.12;pointer-events:none}
     .section-label{font-size:.68rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:18px;display:flex;align-items:center;gap:14px}
     .section-label::before{content:'';width:28px;height:1px;background:var(--gold)}
     .section-title{font-family:var(--serif);font-size:clamp(2.2rem,4vw,3.8rem);font-weight:300;line-height:1.08}
@@ -157,7 +159,7 @@
     .team-specs{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
     .spec-tag{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;border:1px solid rgba(201,168,76,.18);color:var(--muted);padding:3px 10px}
     .results{background:var(--mid);position:relative;overflow:hidden}
-    .results::before{content:'VICTORY';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--serif);font-size:18vw;font-weight:700;color:rgba(201,168,76,.025);white-space:nowrap;pointer-events:none}
+    .results::before{content:'VICTORY';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--serif);font-size:18vw;font-weight:700;color:rgba(201,168,76,.025);white-space:nowrap;pointer-events:none;overflow:hidden}
     .results-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px}
     .result-card{background:var(--card);padding:36px 32px;border:1px solid rgba(201,168,76,.08);position:relative}
     .result-card::before{content:'';position:absolute;top:0;left:32px;right:32px;height:1px;background:var(--gold);opacity:.4}
@@ -208,8 +210,8 @@
     .faq-item.open .faq-a{padding:0 28px 24px;max-height:300px}
     .faq-item.open .faq-q span{transform:rotate(45deg)}.faq-item.open{border-color:rgba(201,168,76,.22)}
     .contact-wrap{display:grid;grid-template-columns:1fr 1fr}
-    .contact-info{padding:100px 72px;background:var(--black)}
-    .contact-form-side{padding:100px 72px;background:var(--card)}
+    .contact-info{padding:100px 60px;background:var(--black);overflow:hidden}
+    .contact-form-side{padding:100px 60px;background:var(--card);overflow:hidden}
     .contact-detail{margin-bottom:32px}
     .c-label{font-size:.66rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:6px;display:block}
     .c-val{font-family:var(--serif);font-size:1.08rem;color:var(--white);white-space:pre-line}
@@ -278,7 +280,7 @@
       .team-grid,.why-grid,.awards-grid,.community-stats{grid-template-columns:1fr 1fr}
       .process-steps{grid-template-columns:1fr 1fr}
       .process-steps::before{display:none}
-      .contact-info,.contact-form-side{padding:36px 0}
+      .contact-info,.contact-form-side{padding:44px 15px}
       .form-row{grid-template-columns:1fr 1fr}
       .footer-top{grid-template-columns:1fr 1fr}
       .footer-bottom{flex-direction:column;text-align:center;gap:8px}
@@ -352,10 +354,7 @@
     <li><a href="#contact">Contact</a></li>
   </ul>
   <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Free Consultation</button>
-  <div class="nav-mobile-right">
-    <a id="navPhoneBtn" href="tel:+254700000000" class="nav-phone-btn" title="Call us">📞</a>
-  </div>
-</nav>
+  </nav>
 
 <section class="hero" id="home">
   <div class="hero-default-bg"></div>
