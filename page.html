@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,viewport-fit=cover"/>
   <title id="pageTitle">Rose Mutua & Advocates</title>
   <meta name="description" id="metaDesc" content=""/>
   <meta name="keywords" id="metaKw" content=""/>
@@ -17,19 +17,35 @@
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
     :root{--black:#09090a;--dark:#0f0f0d;--mid:#181816;--card:#1d1d1b;--gold:#c9a84c;--gold-light:#e2c47a;--gold-dim:rgba(201,168,76,0.12);--white:#f4f1eb;--muted:#878574;--serif:'Cormorant Garamond',Georgia,serif;--sans:'Outfit',sans-serif}
     html{scroll-behavior:smooth;overflow-x:hidden}
-    body{background:var(--black);color:var(--white);font-family:var(--sans);font-weight:300;overflow-x:hidden;cursor:none;padding-top:env(safe-area-inset-top)}
-    img,video,iframe{max-width:100%;height:auto}
+    body{background:var(--black);color:var(--white);font-family:var(--sans);font-weight:300;overflow-x:hidden;cursor:none;-webkit-text-size-adjust:100%}
+    img,video,iframe{display:block;max-width:100%;height:auto}
+    a{text-decoration:none}
     @media(hover:none){body{cursor:auto}.cursor,.cursor-ring{display:none!important}}
-    .container{width:100%;padding:0 20px;margin:0 auto;max-width:1200px;box-sizing:border-box}
+    .container{width:100%;padding:0 1rem;margin:0 auto;max-width:1200px;box-sizing:border-box}
     .cursor{position:fixed;width:10px;height:10px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
     .cursor-ring{position:fixed;width:36px;height:36px;border:1px solid var(--gold);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .25s;opacity:.6}
 
-    /* ── NAV ──────────────────────────────────────────── */
-    nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:calc(16px + env(safe-area-inset-top)) 0 16px;background:rgba(9,9,10,.97);backdrop-filter:blur(6px);border-bottom:1px solid rgba(201,168,76,.12)}
-    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+    /* ── NAV — mobile first ───────────────────────────────── */
+    nav{position:sticky;top:0;z-index:200;background:rgba(9,9,10,.97);backdrop-filter:blur(6px);border-bottom:1px solid rgba(201,168,76,.12)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:0 1rem;height:calc(54px + env(safe-area-inset-top));padding-top:env(safe-area-inset-top);max-width:1400px;margin:0 auto}
+    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;min-width:0}
     .nav-logo-img{max-height:34px;max-width:120px;object-fit:contain}
-    .nav-logo-text{font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--gold);letter-spacing:.06em}
-    .nav-links{display:flex;gap:28px;list-style:none}
+    .nav-logo-text{font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--gold);letter-spacing:.06em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .nav-links{display:none;list-style:none;align-items:center;gap:24px}
+    .nav-links a{color:var(--white);text-decoration:none;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;transition:color .3s}
+    .nav-links a:hover{color:var(--gold)}
+    .nav-cta{border:1px solid var(--gold);color:var(--gold)!important;padding:7px 18px;font-size:.68rem!important;letter-spacing:.12em!important;transition:all .3s;white-space:nowrap;text-decoration:none}
+    .nav-hamburger{display:flex;flex-direction:column;justify-content:center;gap:5px;width:34px;height:34px;padding:4px;background:none;border:1px solid rgba(201,168,76,.3);cursor:pointer;flex-shrink:0}
+    .nav-hamburger span{display:block;height:1px;background:var(--gold);transition:all .35s ease;transform-origin:center}
+    .nav-hamburger.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+    .nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+    .nav-hamburger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+    @media(min-width:1024px){
+      .nav-links{display:flex!important}
+      .nav-hamburger{display:none!important}
+      .mobile-menu{display:none!important}
+      .mobile-overlay{display:none!important}
+    }
     .nav-links a{color:var(--white);text-decoration:none;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;transition:color .3s}
     .nav-links a:hover{color:var(--gold)}
     .nav-cta{background:transparent;border:1px solid var(--gold);color:var(--gold);padding:8px 20px;font-family:var(--sans);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:all .3s;text-decoration:none;white-space:nowrap}
@@ -275,48 +291,33 @@
     .ft-legal a:hover{color:var(--gold)}
     .admin-bar{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--black);padding:8px 20px;font-family:var(--sans);font-size:.67rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;text-decoration:none;z-index:99;opacity:.7;transition:opacity .3s}
     .admin-bar:hover{opacity:1}
-    @media(max-width:1100px){
-      nav{padding:14px 4%}
-      .nav-links{gap:18px}
-      .nav-links a{font-size:.68rem;letter-spacing:.1em}
-      .nav-cta{padding:7px 14px;font-size:.66rem}
+    /* Mobile base styles */
+    .page-hero{padding:2.5rem 0 2rem;background:var(--dark);border-bottom:1px solid rgba(201,168,76,.1);position:relative;overflow:hidden}
+    .page-body{padding:2.5rem 0;max-width:100%}
+    .post-body{padding:2.5rem 0}
+    .page-title{font-size:clamp(1.8rem,8vw,4.4rem);font-family:var(--serif);font-weight:300;line-height:1.05;position:relative;z-index:1}
+    .page-subtitle{color:var(--muted);font-size:.9rem;line-height:1.85;margin-top:14px;position:relative;z-index:1}
+    .mv-grid,.values-grid,.perks-gp,.book-steps,.med-steps,.benefits-grid,.pb-stats,.resources-grid{grid-template-columns:1fr}
+    .cpage-grid,.book-options,.ext-links-grid,.cta-band,.adr-svc{grid-template-columns:1fr}
+    .c-info,.c-form{padding:2rem 0}
+    .ft-main{grid-template-columns:1fr 1fr;padding:2.5rem 0}
+    .ft-bottom{padding:1rem 0;flex-direction:column;text-align:center}
+    @media(min-width:600px){
+      .mv-grid,.values-grid,.book-steps,.med-steps,.benefits-grid,.pb-stats,.resources-grid{grid-template-columns:1fr 1fr}
     }
-    @media(max-width:700px){
-      nav{padding:calc(10px + env(safe-area-inset-top)) 15px 10px;background:rgba(9,9,10,.98)}
-      .nav-links,.nav-cta{display:none}
-      .nav-hamburger{display:flex;flex-shrink:0}
-      .nav-logo{min-width:0;flex:1;overflow:hidden}
-      .nav-logo-text{font-size:.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-      .nav-logo-img{max-height:30px}
-      .mobile-menu{display:flex}
-      .page-hero{padding:60px 15px 36px;overflow:hidden}
-      .page-body{padding:40px 15px;max-width:100%}
-      .post-body{padding:40px 15px}
-      .page-title{font-size:clamp(1.9rem,8vw,3rem)}
-      .mv-grid,.values-grid{grid-template-columns:1fr 1fr}
-      .perks-gp{grid-template-columns:1fr 1fr}
-      .cpage-grid,.book-options,.ext-links-grid,.cta-band,.adr-svc{grid-template-columns:1fr}
-      .book-steps,.med-steps,.benefits-grid,.pb-stats,.resources-grid{grid-template-columns:1fr 1fr}
-      .c-info,.c-form{padding:36px 15px}
-      .ft-main{grid-template-columns:1fr 1fr;padding:36px 15px}
-      .ft-bottom{padding:14px 15px;flex-direction:column;text-align:center}
-    }
-    @media(max-width:480px){
-      nav{padding:calc(10px + env(safe-area-inset-top)) 12px 10px}
-      .page-hero{padding:56px 12px 30px}
-      .page-body,.post-body{padding:32px 12px}
-      .page-title{font-size:clamp(1.75rem,9vw,2.6rem)}
-      .page-subtitle{font-size:.84rem}
-      .mv-grid,.values-grid,.perks-gp,.book-steps,.med-steps,.benefits-grid,.pb-stats,.resources-grid{grid-template-columns:1fr}
-      .ft-main{grid-template-columns:1fr;padding:28px 12px;gap:20px}
-      .ft-bottom{padding:12px 12px}
-      .c-info,.c-form{padding:28px 12px}
-      .sec-title{font-size:clamp(1.5rem,7vw,2.1rem)}
-    }
-    @media(max-width:360px){
-      .page-hero{padding:50px 10px 26px}
-      .page-body,.post-body{padding:28px 10px}
-      .ft-main{padding:22px 10px}
+    @media(min-width:1024px){
+      .page-hero{padding:5.5rem 0 3.5rem}
+      .page-body,.post-body{padding:4.5rem 0}
+      .cpage-grid{grid-template-columns:1fr 1fr}
+      .book-options{grid-template-columns:1fr 1fr 1fr}
+      .book-steps,.med-steps{grid-template-columns:1fr 1fr 1fr 1fr}
+      .ext-links-grid,.resources-grid{grid-template-columns:1fr 1fr 1fr}
+      .perks-gp{grid-template-columns:1fr 1fr 1fr}
+      .c-info,.c-form{padding:4rem 3rem}
+      .ft-main{grid-template-columns:2.2fr 1fr 1fr 1fr 1fr;padding:3.5rem 0;gap:44px}
+      .ft-bottom{flex-direction:row;text-align:left;padding:1rem 0}
+      .adr-svc{grid-template-columns:1fr 1fr 1fr}
+      .cta-band{grid-template-columns:1fr auto}
     }
   </style>
 </head>
@@ -356,22 +357,24 @@
 <a href="admin.html" class="admin-bar">⚙ Admin</a>
 
 <nav id="mainNav">
-  <a href="index.html" class="nav-logo" id="navLogo">
-    <img id="navLogoImg" class="nav-logo-img" src="" alt="" style="display:none"/>
-    <span id="navLogoText" class="nav-logo-text">Rose Mutua & Advocates</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="page.html?p=about">About</a></li>
-    <li><a href="page.html?p=practice">Practice Areas</a></li>
-    <li><a href="page.html?p=team">Our Team</a></li>
-    <li><a href="page.html?p=blog">Legal Insights</a></li>
-    <li><a href="page.html?p=careers">Careers</a></li>
-    <li><a href="page.html?p=contact">Contact</a></li>
-  </ul>
-  <a href="page.html?p=book" class="nav-cta">Free Consultation</a>
-  <button class="nav-hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" id="navLogo">
+      <img id="navLogoImg" class="nav-logo-img" src="" alt="" style="display:none"/>
+      <span id="navLogoText" class="nav-logo-text">Rose Mutua & Advocates</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="page.html?p=about">About</a></li>
+      <li><a href="page.html?p=practice">Practice Areas</a></li>
+      <li><a href="page.html?p=team">Our Team</a></li>
+      <li><a href="page.html?p=blog">Legal Insights</a></li>
+      <li><a href="page.html?p=careers">Careers</a></li>
+      <li><a href="page.html?p=contact">Contact</a></li>
+    </ul>
+    <a href="page.html?p=book" class="nav-cta">Free Consultation</a>
+    <button class="nav-hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
 <div id="pageContent"></div>

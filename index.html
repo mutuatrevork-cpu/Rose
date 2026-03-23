@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,viewport-fit=cover"/>
   <title id="pageTitle">Rose Mutua & Advocates — Machakos Law Firm</title>
   <meta name="description" id="metaDesc" content="Rose Mutua & Advocates is Machakos County's leading law firm, offering expert legal counsel in corporate law, criminal defense, family law, and estate succession."/>
   <meta name="keywords" id="metaKw" content="law firm Machakos, lawyer Kenya, criminal defense Machakos, family law Kenya"/>
@@ -17,38 +17,46 @@
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
     :root{--black:#09090a;--dark:#0f0f0d;--mid:#181816;--card:#1d1d1b;--gold:#c9a84c;--gold-light:#e2c47a;--gold-dim:rgba(201,168,76,0.12);--white:#f4f1eb;--muted:#878574;--serif:'Cormorant Garamond',Georgia,serif;--sans:'Outfit',sans-serif}
     html{scroll-behavior:smooth;overflow-x:hidden}
-    body{background:var(--black);color:var(--white);font-family:var(--sans);font-weight:300;overflow-x:hidden;cursor:none;padding-top:env(safe-area-inset-top)}
-    img,video,iframe{max-width:100%;height:auto}
+    body{background:var(--black);color:var(--white);font-family:var(--sans);font-weight:300;overflow-x:hidden;cursor:none;-webkit-text-size-adjust:100%}
+    img,video,iframe{display:block;max-width:100%;height:auto}
+    a{text-decoration:none}
     @media(hover:none){body{cursor:auto}.cursor,.cursor-ring{display:none!important}}
 
-    /* ── CONTAINER — WordPress style ─────────────────────── */
-    .container{width:100%;padding:0 20px;margin:0 auto;max-width:1200px;box-sizing:border-box}
-    img{max-width:100%;height:auto}
+    /* ── CONTAINER ───────────────────────────────────────── */
+    .container{width:100%;padding:0 1rem;margin:0 auto;max-width:1200px;box-sizing:border-box}
 
     /* cursor */
     .cursor{position:fixed;width:10px;height:10px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s}
     .cursor-ring{position:fixed;width:36px;height:36px;border:1px solid var(--gold);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .25s;opacity:.6}
 
-    /* ── NAV ──────────────────────────────────────────── */
-    nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:calc(18px + env(safe-area-inset-top)) 0 18px;background:linear-gradient(to bottom,rgba(9,9,10,.97) 60%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid rgba(201,168,76,.08);transition:border-color .3s}
-    .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0}
-    .nav-logo-img{max-height:38px;max-width:140px;object-fit:contain}
-    .nav-logo-text{font-family:var(--serif);font-size:1.05rem;font-weight:600;letter-spacing:.06em;color:var(--gold)}
-    .nav-links{display:flex;gap:32px;list-style:none}
-    .nav-links a{color:var(--white);text-decoration:none;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;font-weight:400;transition:color .3s;position:relative}
-    .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s}
-    .nav-links a:hover{color:var(--gold)}.nav-links a:hover::after{width:100%}
-    .nav-cta{background:transparent;border:1px solid var(--gold);color:var(--gold);padding:8px 22px;font-family:var(--sans);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;cursor:none;transition:all .3s;white-space:nowrap}
-    .nav-cta:hover{background:var(--gold);color:var(--black)}
+    /* ── NAV — mobile first ───────────────────────────────── */
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(9,9,10,.97);backdrop-filter:blur(6px);border-bottom:1px solid rgba(201,168,76,.08)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:0 1rem;height:calc(56px + env(safe-area-inset-top));padding-top:env(safe-area-inset-top);max-width:1400px;margin:0 auto}
+    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;min-width:0}
+    .nav-logo-img{max-height:34px;max-width:120px;object-fit:contain}
+    .nav-logo-text{font-family:var(--serif);font-size:1rem;font-weight:600;letter-spacing:.06em;color:var(--gold);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
-    /* ── HAMBURGER ────────────────────────────────────── */
-    .nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:34px;height:34px;padding:4px;background:none;border:1px solid rgba(201,168,76,.3);cursor:pointer;z-index:201;flex-shrink:0}
+    /* Desktop links — hidden by default (mobile-first) */
+    .nav-links{display:none;list-style:none;align-items:center;gap:24px;flex-shrink:0}
+    .nav-links a{color:var(--white);text-decoration:none;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;font-weight:400;transition:color .3s}
+    .nav-links a:hover{color:var(--gold)}
+    .nav-cta{border:1px solid var(--gold);color:var(--gold)!important;padding:7px 18px;font-size:.68rem!important;letter-spacing:.12em!important;transition:all .3s;white-space:nowrap}
+    .nav-cta:hover{background:var(--gold);color:var(--black)!important}
+
+    /* Hamburger — always visible on mobile */
+    .nav-hamburger{display:flex;flex-direction:column;justify-content:center;gap:5px;width:34px;height:34px;padding:4px;background:none;border:1px solid rgba(201,168,76,.3);cursor:pointer;z-index:201;flex-shrink:0}
     .nav-hamburger span{display:block;height:1px;background:var(--gold);transition:all .35s ease;transform-origin:center}
     .nav-hamburger.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
     .nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
     .nav-hamburger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
-    .nav-mobile-right{display:none;align-items:center;gap:8px}
-    .nav-phone-btn{background:none;border:1px solid rgba(201,168,76,.3);color:var(--gold);width:34px;height:34px;font-size:.95rem;cursor:pointer;display:flex;align-items:center;justify-content:center;text-decoration:none;flex-shrink:0}
+
+    /* ≥1024px — show desktop nav, hide hamburger */
+    @media(min-width:1024px){
+      .nav-links{display:flex!important}
+      .nav-hamburger{display:none!important}
+      .mobile-menu{display:none!important}
+      .mobile-overlay{display:none!important}
+    }
 
     /* ── MOBILE DRAWER ────────────────────────────────── */
     .mobile-menu{display:none;position:fixed;top:0;right:0;bottom:0;width:min(300px,80vw);background:var(--dark);border-left:1px solid rgba(201,168,76,.15);z-index:199;transform:translateX(100%);transition:transform .4s cubic-bezier(.4,0,.2,1);flex-direction:column;padding:64px 28px 36px;overflow-y:auto}
@@ -64,7 +72,7 @@
     .mobile-pages-list{list-style:none;display:flex;flex-direction:column;gap:0;margin-bottom:24px}
     .mobile-pages-list li a{display:block;font-size:.83rem;color:var(--muted);text-decoration:none;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.03);transition:color .3s;letter-spacing:.04em}
     .mobile-pages-list li a:hover{color:var(--gold)}
-    .hero{min-height:100dvh;display:flex;flex-direction:column;justify-content:center;padding:calc(140px + env(safe-area-inset-top)) 0 100px;position:relative;overflow:hidden;background:var(--black)}
+    .hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:calc(56px + env(safe-area-inset-top) + 4rem) 0 4rem;position:relative;overflow:hidden;background:var(--black)}
     /* Hero background */
     .hero-default-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 80% 60% at 70% 40%, rgba(201,168,76,.06) 0%, transparent 60%),radial-gradient(ellipse 50% 80% at 20% 60%, rgba(201,168,76,.03) 0%, transparent 55%),linear-gradient(160deg, #0d0d0b 0%, #09090a 40%, #0b0b09 100%)}
     .hero-default-corner{position:absolute;bottom:0;right:0;width:45%;height:100%;background:linear-gradient(135deg,transparent 0%,rgba(201,168,76,.04) 50%,transparent 100%);z-index:0}
@@ -255,46 +263,63 @@
     .admin-bar{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--black);padding:10px 22px;font-family:var(--sans);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;text-decoration:none;z-index:99;opacity:.7;transition:opacity .3s}
     .admin-bar:hover{opacity:1}
 
-    /* ── RESPONSIVE — container-based ───────────────────── */
-    @media(max-width:700px){
-      .container{padding:0 15px}
-      section{overflow-x:hidden}
-      nav{padding:calc(10px + env(safe-area-inset-top)) 15px 10px;background:rgba(9,9,10,.98)}
-      .nav-links,.nav-cta{display:none}
-      .nav-hamburger{display:flex;flex-shrink:0}
-      .nav-logo{flex:1;min-width:0;overflow:hidden}
-      .nav-logo-text{font-size:.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-      .nav-logo-img{max-height:30px}
-      .nav-mobile-right{display:flex}
-      .mobile-menu{display:flex}
-      .hero-ring1,.hero-ring2,.hero-ring3{display:none}
-      .hero{min-height:100dvh;padding:calc(80px + env(safe-area-inset-top)) 0 40px}
-      .hero-eyebrow{display:none}
-      .hero-divider{height:28px;margin:14px 0}
-      .hero-actions{margin-top:16px;gap:10px}
-      .hero-scroll,.hero-location{display:none}
-      section{padding:60px 0}
-      .stats-band{padding:24px 0}
-      .about-grid,.contact-wrap,.community-grid,.faq-grid{grid-template-columns:1fr}
-      .practice-grid,.results-grid,.testimonial-grid{grid-template-columns:1fr}
-      .team-grid,.why-grid,.awards-grid,.community-stats{grid-template-columns:1fr 1fr}
-      .process-steps{grid-template-columns:1fr 1fr}
-      .process-steps::before{display:none}
-      .contact-info,.contact-form-side{padding:44px 15px}
-      .form-row{grid-template-columns:1fr 1fr}
-      .footer-top{grid-template-columns:1fr 1fr}
-      .footer-bottom{flex-direction:column;text-align:center;gap:8px}
+    /* ── RESPONSIVE — mobile-first ───────────────────────── */
+    /* Mobile base: 1rem padding, single column, hamburger visible */
+    .hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:calc(56px + env(safe-area-inset-top) + 4rem) 0 4rem;position:relative;overflow:hidden;background:var(--black)}
+    section{padding:3.5rem 0;overflow:hidden}
+    .stats-band{background:var(--mid);border-top:1px solid rgba(201,168,76,.18);border-bottom:1px solid rgba(201,168,76,.18);padding:2rem 0;display:flex;justify-content:space-around;flex-wrap:wrap;gap:1rem}
+    .hero-eyebrow{display:none}
+    .hero-ring1,.hero-ring2,.hero-ring3{display:none}
+    .hero-scroll,.hero-location{display:none}
+    .hero-divider{height:28px;margin:1rem 0}
+    .hero-actions{margin-top:1rem;gap:.75rem;flex-direction:column;align-items:stretch}
+    .btn-primary,.btn-ghost{width:100%;text-align:center;padding:13px 20px;font-size:.72rem;display:block}
+    .about-grid,.contact-wrap,.community-grid,.faq-grid{grid-template-columns:1fr}
+    .practice-grid,.results-grid,.testimonial-grid{grid-template-columns:1fr}
+    .team-grid,.why-grid,.awards-grid,.community-stats{grid-template-columns:1fr 1fr}
+    .process-steps{grid-template-columns:1fr 1fr}
+    .process-steps::before{display:none}
+    .contact-info,.contact-form-side{padding:2.5rem 1rem}
+    .form-row{grid-template-columns:1fr}
+    .footer-top{grid-template-columns:1fr 1fr}
+    .footer-bottom{flex-direction:column;text-align:center;gap:.5rem}
+    .practice-card{padding:1.5rem 1.2rem}
+
+    /* ≥600px — two columns for some grids */
+    @media(min-width:600px){
+      .practice-grid,.results-grid,.form-row{grid-template-columns:1fr 1fr}
+      .hero-actions{flex-direction:row;align-items:flex-start}
+      .btn-primary,.btn-ghost{width:auto;display:inline-block}
     }
-    @media(max-width:480px){
-      .container{padding:0 12px}
-      nav{padding:10px 12px}
-      .practice-card{padding:24px 18px}
-      .p-num{font-size:2.8rem}
-      .hero-actions{flex-direction:column;align-items:stretch}
-      .btn-primary,.btn-ghost{width:100%;text-align:center;padding:13px 16px;font-size:.71rem}
-      .team-grid,.why-grid,.process-steps{grid-template-columns:1fr}
-      .form-row{grid-template-columns:1fr}
-      .footer-top{grid-template-columns:1fr}
+
+    /* ≥1024px — full desktop layout */
+    @media(min-width:1024px){
+      .hero{padding:10rem 0 7rem}
+      .hero-ring1,.hero-ring2,.hero-ring3{display:block}
+      .hero-eyebrow{display:flex}
+      .hero-scroll,.hero-location{display:flex}
+      .hero-divider{height:72px;margin:44px 0}
+      .hero-actions{margin-top:44px;gap:18px}
+      .btn-primary,.btn-ghost{padding:15px 42px;font-size:.76rem}
+      section{padding:7.5rem 0}
+      .stats-band{padding:3rem 0;gap:1.5rem}
+      .about-grid{grid-template-columns:5fr 7fr;gap:90px}
+      .practice-grid{grid-template-columns:1fr 1fr}
+      .process-steps{grid-template-columns:1fr 1fr 1fr 1fr}
+      .process-steps::before{display:block}
+      .team-grid{grid-template-columns:1fr 1fr 1fr}
+      .results-grid{grid-template-columns:1fr 1fr 1fr}
+      .why-grid{grid-template-columns:1fr 1fr 1fr}
+      .awards-grid{grid-template-columns:1fr 1fr 1fr 1fr}
+      .community-grid{grid-template-columns:1fr 1fr}
+      .testimonial-grid{grid-template-columns:1fr 1fr 1fr}
+      .faq-grid{grid-template-columns:1fr 1fr}
+      .contact-wrap{grid-template-columns:1fr 1fr}
+      .contact-info,.contact-form-side{padding:6rem 4.5rem}
+      .form-row{grid-template-columns:1fr 1fr}
+      .footer-top{grid-template-columns:2fr 1fr 1fr 1fr 1fr}
+      .footer-bottom{flex-direction:row;text-align:left}
+      .practice-card{padding:3rem 2.75rem}
     }
   </style>
 </head>
@@ -337,24 +362,26 @@
 <a href="admin.html" class="admin-bar">⚙ Admin</a>
 
 <nav id="mainNav">
-  <button class="nav-hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-  <a href="#" class="nav-logo" id="navLogo">
-    <img id="navLogoImg" class="nav-logo-img" src="" alt="" style="display:none"/>
-    <span id="navLogoText" class="nav-logo-text">Rose Mutua & Advocates</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#practice">Practice Areas</a></li>
-    <li><a href="#team">Our Team</a></li>
-    <li><a href="#results">Results</a></li>
-    <li><a href="#community">Community</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Free Consultation</button>
-  </nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo" id="navLogo">
+      <img id="navLogoImg" class="nav-logo-img" src="" alt="" style="display:none"/>
+      <span id="navLogoText" class="nav-logo-text">Rose Mutua & Advocates</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#practice">Practice Areas</a></li>
+      <li><a href="#team">Our Team</a></li>
+      <li><a href="#results">Results</a></li>
+      <li><a href="#community">Community</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Free Consultation</button>
+    <button class="nav-hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
 
 <section class="hero" id="home">
   <div class="hero-default-bg"></div>
